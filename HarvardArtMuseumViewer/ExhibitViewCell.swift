@@ -7,8 +7,14 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class ExhibitViewCell: UITableViewCell {
 
+    //MARK: Properties
+    
+    @IBOutlet weak var title: UILabel!
+
+    @IBOutlet weak var objectImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
