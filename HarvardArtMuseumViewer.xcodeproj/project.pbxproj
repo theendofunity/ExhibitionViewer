@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		847B78A325EBEE3F00F0D81D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78A225EBEE3F00F0D81D /* TableViewController.swift */; };
+		847B78AB25EBEF8300F0D81D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78AA25EBEF8300F0D81D /* TableViewCell.swift */; };
 		847F067025E6C00000338B31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F066F25E6C00000338B31 /* AppDelegate.swift */; };
 		847F067225E6C00000338B31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F067125E6C00000338B31 /* SceneDelegate.swift */; };
-		847F067425E6C00000338B31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F067325E6C00000338B31 /* ViewController.swift */; };
+		847F067425E6C00000338B31 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F067325E6C00000338B31 /* DetailedViewController.swift */; };
 		847F067725E6C00000338B31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847F067525E6C00000338B31 /* Main.storyboard */; };
 		847F067925E6C01500338B31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847F067825E6C01500338B31 /* Assets.xcassets */; };
 		847F067C25E6C01500338B31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847F067A25E6C01500338B31 /* LaunchScreen.storyboard */; };
@@ -35,10 +37,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		847B78A225EBEE3F00F0D81D /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		847B78AA25EBEF8300F0D81D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		847F066C25E6C00000338B31 /* HarvardArtMuseumViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarvardArtMuseumViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847F066F25E6C00000338B31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		847F067125E6C00000338B31 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		847F067325E6C00000338B31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		847F067325E6C00000338B31 /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
 		847F067625E6C00000338B31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		847F067825E6C01500338B31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		847F067B25E6C01500338B31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,7 +105,9 @@
 			children = (
 				847F066F25E6C00000338B31 /* AppDelegate.swift */,
 				847F067125E6C00000338B31 /* SceneDelegate.swift */,
-				847F067325E6C00000338B31 /* ViewController.swift */,
+				847F067325E6C00000338B31 /* DetailedViewController.swift */,
+				847B78A225EBEE3F00F0D81D /* TableViewController.swift */,
+				847B78AA25EBEF8300F0D81D /* TableViewCell.swift */,
 				847F067525E6C00000338B31 /* Main.storyboard */,
 				847F067825E6C01500338B31 /* Assets.xcassets */,
 				847F067A25E6C01500338B31 /* LaunchScreen.storyboard */,
@@ -258,9 +264,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				847F067425E6C00000338B31 /* ViewController.swift in Sources */,
+				847B78AB25EBEF8300F0D81D /* TableViewCell.swift in Sources */,
+				847F067425E6C00000338B31 /* DetailedViewController.swift in Sources */,
 				847F067025E6C00000338B31 /* AppDelegate.swift in Sources */,
 				847F067225E6C00000338B31 /* SceneDelegate.swift in Sources */,
+				847B78A325EBEE3F00F0D81D /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
