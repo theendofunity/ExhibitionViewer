@@ -9,6 +9,17 @@ import UIKit
 
 class ExhibitViewController: UIViewController {
 
+    //MARK: Properties
+    
+ 
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var photo: UIImageView!
+    
+    @IBOutlet weak var objectNumber: UITextField!
+    @IBOutlet weak var workType: UITextField!
+    @IBOutlet weak var date: UITextField!
+    @IBOutlet weak var people: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

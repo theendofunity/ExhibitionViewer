@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		847B78A325EBEE3F00F0D81D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78A225EBEE3F00F0D81D /* TableViewController.swift */; };
-		847B78AB25EBEF8300F0D81D /* ExhibitViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78AA25EBEF8300F0D81D /* ExhibitViewCell.swift */; };
 		847B78B325EBFBFC00F0D81D /* Exhibit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78B225EBFBFC00F0D81D /* Exhibit.swift */; };
+		847B78CA25ED63D500F0D81D /* ExhibitionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */; };
+		847B78DA25ED6EA600F0D81D /* ExhibitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */; };
 		847F067025E6C00000338B31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F066F25E6C00000338B31 /* AppDelegate.swift */; };
 		847F067225E6C00000338B31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F067125E6C00000338B31 /* SceneDelegate.swift */; };
 		847F067425E6C00000338B31 /* ExhibitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F067325E6C00000338B31 /* ExhibitViewController.swift */; };
@@ -38,9 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		847B78A225EBEE3F00F0D81D /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		847B78AA25EBEF8300F0D81D /* ExhibitViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitViewCell.swift; sourceTree = "<group>"; };
 		847B78B225EBFBFC00F0D81D /* Exhibit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibit.swift; sourceTree = "<group>"; };
+		847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionTableViewController.swift; sourceTree = "<group>"; };
+		847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitTableViewCell.swift; sourceTree = "<group>"; };
 		847F066C25E6C00000338B31 /* HarvardArtMuseumViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarvardArtMuseumViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847F066F25E6C00000338B31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		847F067125E6C00000338B31 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,8 +109,8 @@
 				847F067125E6C00000338B31 /* SceneDelegate.swift */,
 				847B78B225EBFBFC00F0D81D /* Exhibit.swift */,
 				847F067325E6C00000338B31 /* ExhibitViewController.swift */,
-				847B78A225EBEE3F00F0D81D /* TableViewController.swift */,
-				847B78AA25EBEF8300F0D81D /* ExhibitViewCell.swift */,
+				847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */,
+				847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */,
 				847F067525E6C00000338B31 /* Main.storyboard */,
 				847F067825E6C01500338B31 /* Assets.xcassets */,
 				847F067A25E6C01500338B31 /* LaunchScreen.storyboard */,
@@ -267,12 +267,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				847B78AB25EBEF8300F0D81D /* ExhibitViewCell.swift in Sources */,
 				847F067425E6C00000338B31 /* ExhibitViewController.swift in Sources */,
+				847B78CA25ED63D500F0D81D /* ExhibitionTableViewController.swift in Sources */,
 				847F067025E6C00000338B31 /* AppDelegate.swift in Sources */,
 				847B78B325EBFBFC00F0D81D /* Exhibit.swift in Sources */,
 				847F067225E6C00000338B31 /* SceneDelegate.swift in Sources */,
-				847B78A325EBEE3F00F0D81D /* TableViewController.swift in Sources */,
+				847B78DA25ED6EA600F0D81D /* ExhibitTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +454,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dudkin-dv.HarvardArtMuseumViewer";
+				PRODUCT_BUNDLE_IDENTIFIER = "dudkin-dv.ExhibitionViewr";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -472,7 +472,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dudkin-dv.HarvardArtMuseumViewer";
+				PRODUCT_BUNDLE_IDENTIFIER = "dudkin-dv.ExhibitionViewr";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -1,19 +1,18 @@
 //
-//  TableViewCell.swift
+//  ExhibitTableViewCell.swift
 //  HarvardArtMuseumViewer
 //
-//  Created by Admin on 28.02.2021.
+//  Created by Admin on 01.03.2021.
 //
 
 import UIKit
 
-class ExhibitViewCell: UITableViewCell {
+class ExhibitTableViewCell: UITableViewCell {
 
     //MARK: Properties
     
-    @IBOutlet weak var title: UILabel!
-
-    @IBOutlet weak var objectImageView: UIImageView!
+    @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var name: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
