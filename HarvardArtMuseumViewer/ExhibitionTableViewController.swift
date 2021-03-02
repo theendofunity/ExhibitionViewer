@@ -81,15 +81,33 @@ class ExhibitionTableViewController: UITableViewController {
      }
      */
     
-    /*
+
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        let identifier = segue.identifier ?? ""
+        
+        if identifier == "Show details" {
+            guard let exhibitionViewController = segue.destination as? ExhibitViewController else {
+                fatalError("Unexpected destination") }
+            
+            guard let selectedCell = sender as? ExhibitTableViewCell else {
+                fatalError("Unexpected sender") }
+            
+            guard let indexPath = tableView.indexPath(for: selectedCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedExhibit = exhibits[indexPath.row]
+            exhibitionViewController.exhibit = selectedExhibit
+        } else {
+            fatalError("Unexpected segue identifier \(identifier)")
+        }
      }
-     */
+
     
     //MARK: Private methods
     

@@ -11,6 +11,7 @@ class ExhibitViewController: UIViewController {
 
     //MARK: Properties
     
+    var exhibit: Exhibit?
  
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var photo: UIImageView!
@@ -22,7 +23,11 @@ class ExhibitViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        if let exhibit = exhibit {
+            name.text = exhibit.title
+            photo.image = exhibit.photo
+        }
     }
 
 

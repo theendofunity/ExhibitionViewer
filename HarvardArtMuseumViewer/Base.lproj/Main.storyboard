@@ -40,6 +40,7 @@
                                 <connections>
                                     <outlet property="name" destination="9hB-U3-3jg" id="kcb-oL-aRh"/>
                                     <outlet property="photo" destination="GWY-hk-GHH" id="9WT-LZ-u0P"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="Show details" id="D6w-7m-9hk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -58,11 +59,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ExhibitViewController" customModule="HarvardArtMuseumViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="Gf1-0l-AgL">
-                                <rect key="frame" x="20" y="64" width="374" height="603"/>
+                                <rect key="frame" x="20" y="20" width="374" height="603"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1J-D3-Tcq">
                                         <rect key="frame" x="156.5" y="0.0" width="61.5" height="36"/>
@@ -141,6 +142,7 @@
                             <constraint firstItem="Gf1-0l-AgL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="oE4-06-xPI"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="rVG-Hs-mgv"/>
                     <connections>
                         <outlet property="date" destination="5k1-ae-ql1" id="WeE-8Y-FOa"/>
                         <outlet property="name" destination="p1J-D3-Tcq" id="SAF-u1-CxE"/>
