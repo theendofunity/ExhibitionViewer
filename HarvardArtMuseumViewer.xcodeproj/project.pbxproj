@@ -10,6 +10,8 @@
 		847B78B325EBFBFC00F0D81D /* Exhibit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78B225EBFBFC00F0D81D /* Exhibit.swift */; };
 		847B78CA25ED63D500F0D81D /* ExhibitionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */; };
 		847B78DA25ED6EA600F0D81D /* ExhibitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */; };
+		847B78DF25F51E0E00F0D81D /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78DE25F51E0E00F0D81D /* ApiKey.swift */; };
+		847B78E425F51FB700F0D81D /* NetworkExhibitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78E325F51FB700F0D81D /* NetworkExhibitionManager.swift */; };
 		847F067025E6C00000338B31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F066F25E6C00000338B31 /* AppDelegate.swift */; };
 		847F067225E6C00000338B31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F067125E6C00000338B31 /* SceneDelegate.swift */; };
 		847F067425E6C00000338B31 /* ExhibitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F067325E6C00000338B31 /* ExhibitViewController.swift */; };
@@ -41,6 +43,8 @@
 		847B78B225EBFBFC00F0D81D /* Exhibit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibit.swift; sourceTree = "<group>"; };
 		847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionTableViewController.swift; sourceTree = "<group>"; };
 		847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitTableViewCell.swift; sourceTree = "<group>"; };
+		847B78DE25F51E0E00F0D81D /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
+		847B78E325F51FB700F0D81D /* NetworkExhibitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkExhibitionManager.swift; sourceTree = "<group>"; };
 		847F066C25E6C00000338B31 /* HarvardArtMuseumViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarvardArtMuseumViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847F066F25E6C00000338B31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		847F067125E6C00000338B31 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				847F067125E6C00000338B31 /* SceneDelegate.swift */,
 				847B78B225EBFBFC00F0D81D /* Exhibit.swift */,
 				847F067325E6C00000338B31 /* ExhibitViewController.swift */,
+				847B78E325F51FB700F0D81D /* NetworkExhibitionManager.swift */,
+				847B78DE25F51E0E00F0D81D /* ApiKey.swift */,
 				847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */,
 				847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */,
 				847F067525E6C00000338B31 /* Main.storyboard */,
@@ -268,9 +274,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				847F067425E6C00000338B31 /* ExhibitViewController.swift in Sources */,
+				847B78E425F51FB700F0D81D /* NetworkExhibitionManager.swift in Sources */,
 				847B78CA25ED63D500F0D81D /* ExhibitionTableViewController.swift in Sources */,
 				847F067025E6C00000338B31 /* AppDelegate.swift in Sources */,
 				847B78B325EBFBFC00F0D81D /* Exhibit.swift in Sources */,
+				847B78DF25F51E0E00F0D81D /* ApiKey.swift in Sources */,
 				847F067225E6C00000338B31 /* SceneDelegate.swift in Sources */,
 				847B78DA25ED6EA600F0D81D /* ExhibitTableViewCell.swift in Sources */,
 			);

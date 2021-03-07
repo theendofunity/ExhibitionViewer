@@ -13,12 +13,14 @@ class ExhibitionTableViewController: UITableViewController {
     //MARK: Properties
     
     var exhibits = [Exhibit]()
+    var networkManager = NetworkExhibitionManager()
     
     //MARK: Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSamples()
+//        loadSamples()
+        networkManager.requestData()
     }
     
     // MARK: - Table view data source
@@ -44,43 +46,6 @@ class ExhibitionTableViewController: UITableViewController {
         
         return cell
     }
-    
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
 
      // MARK: - Navigation
      
@@ -111,18 +76,21 @@ class ExhibitionTableViewController: UITableViewController {
     
     //MARK: Private methods
     
-    func loadSamples() {
+    private func addExhibit(exhibit: Exhibit) {
+        exhibits.append(exhibit)
+    }
+    
+    private func loadSamples() {
         guard let photo1 = UIImage(named: "testImage1") else {
             fatalError("Enable to open test image 1")
         }
         guard let photo2 = UIImage(named: "testImage2") else {
             fatalError("Enable to open test image 2")
         }
+        
         let exhibit1 = Exhibit(title: "Exhibit1", photo: photo1)
         let exhibit2 = Exhibit(title: "Exhibit2", photo: photo2)
         
-        exhibits.append(exhibit1)
-        exhibits.append(exhibit2)
+        exhibits += [exhibit1, exhibit2]
     }
-    
 }
