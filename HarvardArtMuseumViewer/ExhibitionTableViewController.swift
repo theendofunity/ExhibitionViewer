@@ -20,6 +20,15 @@ class ExhibitionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        loadSamples()
+        networkManager.onCompletion = { [weak self] newExhibits in
+            if let self = self {
+                DispatchQueue.main.async {
+                    self.exhibits = newExhibits
+                    print(newExhibits.count)
+                    self.tableView.reloadData()
+                }
+            }
+        }
         networkManager.requestData()
     }
     
@@ -81,16 +90,16 @@ class ExhibitionTableViewController: UITableViewController {
     }
     
     private func loadSamples() {
-        guard let photo1 = UIImage(named: "testImage1") else {
-            fatalError("Enable to open test image 1")
-        }
-        guard let photo2 = UIImage(named: "testImage2") else {
-            fatalError("Enable to open test image 2")
-        }
-        
-        let exhibit1 = Exhibit(title: "Exhibit1", photo: photo1)
-        let exhibit2 = Exhibit(title: "Exhibit2", photo: photo2)
-        
-        exhibits += [exhibit1, exhibit2]
+//        guard let photo1 = UIImage(named: "testImage1") else {
+//            fatalError("Enable to open test image 1")
+//        }
+//        guard let photo2 = UIImage(named: "testImage2") else {
+//            fatalError("Enable to open test image 2")
+//        }
+//
+//        let exhibit1 = Exhibit(title: "Exhibit1", photo: photo1)
+//        let exhibit2 = Exhibit(title: "Exhibit2", photo: photo2)
+//
+//        exhibits += [exhibit1, exhibit2]
     }
 }

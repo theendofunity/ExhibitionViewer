@@ -10,4 +10,8 @@ import UIKit
 struct Exhibit {
     var title: String
     var photo: UIImage?
+    
+    init?(record: Record) {
+        title = record.title
+    }
 }
