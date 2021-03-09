@@ -19,15 +19,10 @@ class ExhibitionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        loadSamples()
+
         networkManager.onCompletion = { [weak self] newExhibits in
-            if let self = self {
-                DispatchQueue.main.async {
-                    self.exhibits = newExhibits
-                    print(newExhibits.count)
-                    self.tableView.reloadData()
-                }
-            }
+                self?.exhibits = newExhibits
+                self?.tableView.reloadData()
         }
         networkManager.requestData()
     }
@@ -49,9 +44,13 @@ class ExhibitionTableViewController: UITableViewController {
             fatalError("cell is not Exhibit view cell")
         }
         
-        let exhibit = exhibits[indexPath.row]
+        var exhibit = exhibits[indexPath.row]
         cell.name.text = exhibit.title
-        cell.photo.image = exhibit.photo
+        
+        networkManager.downloadImage(fromUrl: exhibit.imageUrl) {image in
+            exhibit.photo = image
+            cell.photo.image = exhibit.photo
+        }
         
         return cell
     }
@@ -85,21 +84,5 @@ class ExhibitionTableViewController: UITableViewController {
     
     //MARK: Private methods
     
-    private func addExhibit(exhibit: Exhibit) {
-        exhibits.append(exhibit)
-    }
-    
-    private func loadSamples() {
-//        guard let photo1 = UIImage(named: "testImage1") else {
-//            fatalError("Enable to open test image 1")
-//        }
-//        guard let photo2 = UIImage(named: "testImage2") else {
-//            fatalError("Enable to open test image 2")
-//        }
-//
-//        let exhibit1 = Exhibit(title: "Exhibit1", photo: photo1)
-//        let exhibit2 = Exhibit(title: "Exhibit2", photo: photo2)
-//
-//        exhibits += [exhibit1, exhibit2]
-    }
+
 }

@@ -8,10 +8,13 @@
 import UIKit
 
 struct Exhibit {
-    var title: String
-    var photo: UIImage?
+    let title: String
+    let imageUrl: String
+    var photo: UIImage? 
+
     
     init?(record: Record) {
-        title = record.title
+        self.title = record.title
+        self.imageUrl = record.imageUrl
     }
 }

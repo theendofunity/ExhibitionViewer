@@ -5,7 +5,7 @@
 //  Created by Admin on 07.03.2021.
 //
 
-import Foundation
+import UIKit
 
 class NetworkExhibitionManager {
     
@@ -21,7 +21,9 @@ class NetworkExhibitionManager {
         let task = session.dataTask(with: url) { data, response, error in
             if let data = data {
                 if let exhibits = self.parseJSON(withData: data) {
-                    self.onCompletion?(exhibits)
+                    DispatchQueue.main.async {
+                        self.onCompletion?(exhibits)
+                    }
                 }
             }
         }
@@ -47,5 +49,27 @@ class NetworkExhibitionManager {
             print(error.localizedDescription)
         }
         return nil
+    }
+    
+    func downloadImage(fromUrl urlString: String, onComplition: @escaping ((UIImage?) -> Void)) {
+        guard let url = URL(string: urlString) else {
+            print("Incorrect URL \(urlString)")
+            return
+        }
+        var image: UIImage?
+
+        DispatchQueue.global().async {
+            guard let imageData = try? Data(contentsOf: url) else {
+                print("Error while fetching image")
+                return
+            }
+            
+            let downloadedImage = UIImage(data: imageData)
+            print("Download image initialisation \(urlString)")
+            DispatchQueue.main.async {
+                image = downloadedImage ?? UIImage(named: "Image placeholder")
+                onComplition(image)
+            }
+        }
     }
 }
