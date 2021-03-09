@@ -44,12 +44,13 @@ class ExhibitionTableViewController: UITableViewController {
             fatalError("cell is not Exhibit view cell")
         }
         
-        var exhibit = exhibits[indexPath.row]
+        let exhibit = exhibits[indexPath.row]
         cell.name.text = exhibit.title
         
-        networkManager.downloadImage(fromUrl: exhibit.imageUrl) {image in
-            exhibit.photo = image
-            cell.photo.image = exhibit.photo
+        networkManager.downloadImage(fromUrl: exhibit.imageUrl) { image in
+//            let smallerImage = image.
+            self.exhibits[indexPath.row].photo = image
+            cell.photo.image = image
         }
         
         return cell
@@ -57,7 +58,6 @@ class ExhibitionTableViewController: UITableViewController {
 
      // MARK: - Navigation
      
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
@@ -74,15 +74,15 @@ class ExhibitionTableViewController: UITableViewController {
                 fatalError("The selected cell is not being displayed by the table")
             }
             
+            print("Prepare")
             let selectedExhibit = exhibits[indexPath.row]
+            if selectedCell.photo != nil {
+                print("Photo exist")
+            }
+            print(selectedExhibit)
             exhibitionViewController.exhibit = selectedExhibit
         } else {
             fatalError("Unexpected segue identifier \(identifier)")
         }
      }
-
-    
-    //MARK: Private methods
-    
-
 }

@@ -65,7 +65,6 @@ class NetworkExhibitionManager {
             }
             
             let downloadedImage = UIImage(data: imageData)
-            print("Download image initialisation \(urlString)")
             DispatchQueue.main.async {
                 image = downloadedImage ?? UIImage(named: "Image placeholder")
                 onComplition(image)

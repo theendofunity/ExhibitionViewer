@@ -24,12 +24,15 @@ class ExhibitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let exhibit = exhibit {
-            name.text = exhibit.title
-            photo.image = exhibit.photo
-        }
+       updateInterface()
     }
 
+    func updateInterface() {
+        if let unwrappedExhibit = exhibit {
+            name.text = unwrappedExhibit.title
+            photo.image = unwrappedExhibit.photo
+        }
+    }
 
 }
 

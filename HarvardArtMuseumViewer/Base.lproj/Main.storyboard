@@ -63,7 +63,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="Gf1-0l-AgL">
-                                <rect key="frame" x="20" y="20" width="374" height="603"/>
+                                <rect key="frame" x="20" y="20" width="374" height="706"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1J-D3-Tcq">
                                         <rect key="frame" x="156.5" y="0.0" width="61.5" height="36"/>
@@ -71,11 +71,11 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="r5l-UI-ydC">
-                                        <rect key="frame" x="122.5" y="82" width="129.5" height="97"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r5l-UI-ydC">
+                                        <rect key="frame" x="50" y="82" width="274" height="200"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="7mQ-Xm-GTH">
-                                        <rect key="frame" x="20" y="225" width="334" height="302"/>
+                                        <rect key="frame" x="20" y="328" width="334" height="302"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Object number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxN-WH-pnY">
                                                 <rect key="frame" x="0.0" y="0.0" width="121.5" height="20.5"/>
@@ -124,22 +124,26 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07w-y2-YRG">
-                                        <rect key="frame" x="130" y="573" width="114" height="30"/>
+                                        <rect key="frame" x="130" y="676" width="114" height="30"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Show discription"/>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="7mQ-Xm-GTH" firstAttribute="leading" secondItem="Gf1-0l-AgL" secondAttribute="leading" constant="20" id="2RO-dP-ien"/>
+                                    <constraint firstItem="7mQ-Xm-GTH" firstAttribute="leading" secondItem="Gf1-0l-AgL" secondAttribute="leading" constant="20" id="fgr-bm-6rZ"/>
+                                    <constraint firstItem="r5l-UI-ydC" firstAttribute="top" secondItem="p1J-D3-Tcq" secondAttribute="bottom" constant="20" id="oL8-f5-QED"/>
+                                    <constraint firstItem="7mQ-Xm-GTH" firstAttribute="top" secondItem="r5l-UI-ydC" secondAttribute="bottom" constant="40" id="r77-2p-w5s"/>
+                                    <constraint firstItem="r5l-UI-ydC" firstAttribute="leading" secondItem="Gf1-0l-AgL" secondAttribute="leading" constant="50" id="w0l-UO-geb"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Gf1-0l-AgL" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="KOM-u2-pUc"/>
-                            <constraint firstItem="Gf1-0l-AgL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="nhP-ql-aCQ"/>
-                            <constraint firstItem="Gf1-0l-AgL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="oE4-06-xPI"/>
+                            <constraint firstItem="Gf1-0l-AgL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="2iN-r0-49A"/>
+                            <constraint firstItem="Gf1-0l-AgL" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="FnP-u0-Xea"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Gf1-0l-AgL" secondAttribute="bottom" constant="82" id="NHH-ys-6QN"/>
+                            <constraint firstItem="Gf1-0l-AgL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="UQe-Bf-LN6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rVG-Hs-mgv"/>
@@ -158,7 +162,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image placeholder" width="129.5" height="97"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
