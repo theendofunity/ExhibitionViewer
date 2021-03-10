@@ -60,9 +60,13 @@ class NetworkExhibitionManager {
         return nil
     }
     
-    func downloadImage(fromUrl urlString: String, withIdentifier title: String?, onComplition: @escaping ((UIImage?) -> Void)) {
+    func downloadImage(fromUrl urlString: String, withIdentifier title: String, onComplition: @escaping ((UIImage?) -> Void)) {
         guard let url = URL(string: urlString) else {
             print("Incorrect URL \(urlString)")
+            return
+        }
+        if let image = downloader.imageCache?.image(withIdentifier: title) {
+            onComplition(image)
             return
         }
         let urlRequest = URLRequest(url: url)
