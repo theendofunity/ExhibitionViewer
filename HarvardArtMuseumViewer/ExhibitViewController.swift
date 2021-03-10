@@ -16,10 +16,10 @@ class ExhibitViewController: UIViewController {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var photo: UIImageView!
     
-    @IBOutlet weak var objectNumber: UITextField!
-    @IBOutlet weak var workType: UITextField!
-    @IBOutlet weak var date: UITextField!
-    @IBOutlet weak var people: UITextField!
+    @IBOutlet weak var peopleDataLabel: UILabel!
+    @IBOutlet weak var objectNumberDataLabel: UILabel!
+    @IBOutlet weak var workTypeDataLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +31,18 @@ class ExhibitViewController: UIViewController {
         if let unwrappedExhibit = exhibit {
             name.text = unwrappedExhibit.title
             photo.image = unwrappedExhibit.photo
+            workTypeDataLabel.text = unwrappedExhibit.classification
+            objectNumberDataLabel.text = unwrappedExhibit.objectNumber
+            dateLabel.text = String(unwrappedExhibit.date)
+            peopleDataLabel.text = unwrappedExhibit.autorsString
         }
     }
 
+    @IBAction func showDescription(_ sender: Any) {
+        
+        let description = UIAlertController(title: "Description", message: exhibit?.label, preferredStyle: .actionSheet)
+        description.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        self.present(description, animated: true, completion: nil)
+    }
 }
 

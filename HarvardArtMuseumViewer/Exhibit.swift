@@ -10,11 +10,32 @@ import UIKit
 struct Exhibit {
     let title: String
     let imageUrl: String
+    let classification: String
+    var authors = [String]()
+    var autorsString: String {
+        var string = ""
+        for author in authors {
+            string += author + " "
+        }
+        return string
+    }
+    let objectNumber: String
+    let date: Int
+    let label: String
     var photo: UIImage? 
 
     
     init?(record: Record) {
         self.title = record.title
         self.imageUrl = record.imageUrl
+        self.classification = record.classification
+        self.objectNumber = record.objectNumber
+        self.date = record.dateBegin
+        self.label = record.labelText ?? "No description"
+        self.photo = UIImage(named: "Placeholder image")
+        
+        for author in record.people {
+            self.authors.append(author.name)
+        }
     }
 }
