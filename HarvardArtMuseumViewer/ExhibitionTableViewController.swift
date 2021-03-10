@@ -16,6 +16,7 @@ class ExhibitionTableViewController: UITableViewController {
     var spinner: UIActivityIndicatorView!
     var currentPage = 1
     var fetchingMore = false
+    var isLastPage = false
     
     //MARK: Functions
     
@@ -34,13 +35,16 @@ class ExhibitionTableViewController: UITableViewController {
         networkManager = NetworkExhibitionManager()
         
         networkManager.onCompletion = { [weak self] newExhibits in
-            self?.exhibits = newExhibits
+            if newExhibits.isEmpty {
+                self?.isLastPage = true
+            }
+            self?.exhibits += newExhibits
             self?.tableView.reloadData()
             
             self?.spinner.stopAnimating()
             self?.fetchingMore = false
         }
-        networkManager.fetchData()
+        networkManager.fetchData(withPageNumber: currentPage)
     }
     
     // MARK: - Table view data source
@@ -78,7 +82,7 @@ class ExhibitionTableViewController: UITableViewController {
         let contentHeigh = scrollView.contentSize.height
         
         if offsetY > contentHeigh - scrollView.frame.height {
-            if !fetchingMore {
+            if !fetchingMore  && !isLastPage{
                 updateData()
             }
         }
@@ -87,7 +91,8 @@ class ExhibitionTableViewController: UITableViewController {
     func updateData() {
         fetchingMore = true
         spinner.startAnimating()
-        networkManager.fetchData()
+        currentPage += 1
+        networkManager.fetchData(withPageNumber: currentPage)
     }
     
      // MARK: - Navigation
