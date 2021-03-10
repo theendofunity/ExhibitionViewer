@@ -47,8 +47,7 @@ class ExhibitionTableViewController: UITableViewController {
         let exhibit = exhibits[indexPath.row]
         cell.name.text = exhibit.title
         
-        networkManager.downloadImage(fromUrl: exhibit.imageUrl) { image in
-//            let smallerImage = image.
+        networkManager.downloadImage(fromUrl: exhibit.imageUrl, withIdentifier: exhibit.title) { image in
             self.exhibits[indexPath.row].photo = image
             cell.photo.image = image
         }
@@ -74,12 +73,8 @@ class ExhibitionTableViewController: UITableViewController {
                 fatalError("The selected cell is not being displayed by the table")
             }
             
-            print("Prepare")
             let selectedExhibit = exhibits[indexPath.row]
-            if selectedCell.photo != nil {
-                print("Photo exist")
-            }
-            print(selectedExhibit)
+
             exhibitionViewController.exhibit = selectedExhibit
         } else {
             fatalError("Unexpected segue identifier \(identifier)")

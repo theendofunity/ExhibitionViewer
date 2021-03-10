@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		847B78DF25F51E0E00F0D81D /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78DE25F51E0E00F0D81D /* ApiKey.swift */; };
 		847B78E425F51FB700F0D81D /* NetworkExhibitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78E325F51FB700F0D81D /* NetworkExhibitionManager.swift */; };
 		847B78E925F5326600F0D81D /* GalleryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78E825F5326600F0D81D /* GalleryData.swift */; };
+		847B791425F7DA0900F0D81D /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 847B791325F7DA0900F0D81D /* AlamofireImage */; };
 		847F067025E6C00000338B31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F066F25E6C00000338B31 /* AppDelegate.swift */; };
 		847F067225E6C00000338B31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F067125E6C00000338B31 /* SceneDelegate.swift */; };
 		847F067425E6C00000338B31 /* ExhibitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F067325E6C00000338B31 /* ExhibitViewController.swift */; };
@@ -68,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847B791425F7DA0900F0D81D /* AlamofireImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,11 +116,11 @@
 				847F066F25E6C00000338B31 /* AppDelegate.swift */,
 				847F067125E6C00000338B31 /* SceneDelegate.swift */,
 				847B78B225EBFBFC00F0D81D /* Exhibit.swift */,
+				847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */,
 				847F067325E6C00000338B31 /* ExhibitViewController.swift */,
 				847B78E325F51FB700F0D81D /* NetworkExhibitionManager.swift */,
 				847B78E825F5326600F0D81D /* GalleryData.swift */,
 				847B78DE25F51E0E00F0D81D /* ApiKey.swift */,
-				847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */,
 				847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */,
 				847F067525E6C00000338B31 /* Main.storyboard */,
 				847F067825E6C01500338B31 /* Assets.xcassets */,
@@ -162,6 +164,9 @@
 			dependencies = (
 			);
 			name = HarvardArtMuseumViewer;
+			packageProductDependencies = (
+				847B791325F7DA0900F0D81D /* AlamofireImage */,
+			);
 			productName = HarvardArtMuseumViewer;
 			productReference = 847F066C25E6C00000338B31 /* HarvardArtMuseumViewer.app */;
 			productType = "com.apple.product-type.application";
@@ -233,6 +238,9 @@
 				Base,
 			);
 			mainGroup = 847F066325E6C00000338B31;
+			packageReferences = (
+				847B791225F7DA0900F0D81D /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+			);
 			productRefGroup = 847F066D25E6C00000338B31 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -611,6 +619,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		847B791225F7DA0900F0D81D /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		847B791325F7DA0900F0D81D /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 847B791225F7DA0900F0D81D /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 847F066425E6C00000338B31 /* Project object */;
 }
