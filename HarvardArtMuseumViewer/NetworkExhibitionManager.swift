@@ -20,7 +20,7 @@ class NetworkExhibitionManager {
     
     var onCompletion: (([Exhibit]) -> Void)?
     
-    func requestData() {
+    func fetchData() {
         let urlString = "https://api.harvardartmuseums.org/object?gallery=2220&apikey=\(apiKey)"
         guard let url = URL(string: urlString) else {
             print("Incorrect URL \(urlString)")

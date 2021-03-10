@@ -9,22 +9,38 @@ import UIKit
 
 class ExhibitionTableViewController: UITableViewController {
     
-    
     //MARK: Properties
     
     var exhibits = [Exhibit]()
-    var networkManager = NetworkExhibitionManager()
+    var networkManager: NetworkExhibitionManager!
+    var spinner: UIActivityIndicatorView!
+    var currentPage = 1
+    var fetchingMore = false
     
     //MARK: Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.hidesWhenStopped = true
+        spinner.startAnimating()
+        tableView.addSubview(spinner)
+        
+        spinner.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
+        
+        networkManager = NetworkExhibitionManager()
+        
         networkManager.onCompletion = { [weak self] newExhibits in
-                self?.exhibits = newExhibits
-                self?.tableView.reloadData()
+            self?.exhibits = newExhibits
+            self?.tableView.reloadData()
+            
+            self?.spinner.stopAnimating()
+            self?.fetchingMore = false
         }
-        networkManager.requestData()
+        networkManager.fetchData()
     }
     
     // MARK: - Table view data source
@@ -55,6 +71,25 @@ class ExhibitionTableViewController: UITableViewController {
         return cell
     }
 
+    // MARK: - Scrolling
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeigh = scrollView.contentSize.height
+        
+        if offsetY > contentHeigh - scrollView.frame.height {
+            if !fetchingMore {
+                updateData()
+            }
+        }
+    }
+    
+    func updateData() {
+        fetchingMore = true
+        spinner.startAnimating()
+        networkManager.fetchData()
+    }
+    
      // MARK: - Navigation
      
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
