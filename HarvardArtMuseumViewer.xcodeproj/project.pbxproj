@@ -166,14 +166,14 @@
 		847F066E25E6C00000338B31 /* HarvardArtMuseumViewer */ = {
 			isa = PBXGroup;
 			children = (
-				840CCE39260101A500CAD9FA /* Controllers */,
-				840CCE35260100BF00CAD9FA /* Storyboards */,
-				840CCE302600FF5D00CAD9FA /* Networking */,
-				840CCE2F2600FF5000CAD9FA /* Views */,
-				840CCE2E2600FF2200CAD9FA /* Models */,
-				840CCE342601006900CAD9FA /* Recources */,
 				847F066F25E6C00000338B31 /* AppDelegate.swift */,
 				847F067125E6C00000338B31 /* SceneDelegate.swift */,
+				840CCE39260101A500CAD9FA /* Controllers */,
+				840CCE2E2600FF2200CAD9FA /* Models */,
+				840CCE302600FF5D00CAD9FA /* Networking */,
+				840CCE342601006900CAD9FA /* Recources */,
+				840CCE35260100BF00CAD9FA /* Storyboards */,
+				840CCE2F2600FF5000CAD9FA /* Views */,
 			);
 			path = HarvardArtMuseumViewer;
 			sourceTree = "<group>";
