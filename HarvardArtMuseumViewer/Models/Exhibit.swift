@@ -12,12 +12,8 @@ struct Exhibit {
     let imageUrl: String
     let classification: String
     var authors = [String]()
-    var autorsString: String {
-        var string = ""
-        for author in authors {
-            string += author + " "
-        }
-        return string
+    var authorsString: String {
+        authors.joined(separator: " ")
     }
     let objectNumber: String
     let date: Int

@@ -25,4 +25,8 @@ class ExhibitTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func updateView(with exhibit: Exhibit) {
+        name.text = exhibit.title
+        photo.image = exhibit.photo
+    }
 }

@@ -13,6 +13,7 @@ class ExhibitionTableViewController: UITableViewController {
     
     var exhibits = [Exhibit]()
     var networkManager: NetworkExhibitionManager!
+    var imageDownloader: ImageDownloadManager!
     var spinner: UIActivityIndicatorView!
     var currentPage = 1
     var fetchingMore = false
@@ -23,28 +24,10 @@ class ExhibitionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        spinner = UIActivityIndicatorView(style: .large)
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.hidesWhenStopped = true
-        spinner.startAnimating()
-        tableView.addSubview(spinner)
-        
-        spinner.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
-        spinner.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
-        
+        createSpinner()
         networkManager = NetworkExhibitionManager()
-        
-        networkManager.onCompletion = { [weak self] newExhibits in
-            if newExhibits.isEmpty {
-                self?.isLastPage = true
-            }
-            self?.exhibits += newExhibits
-            self?.tableView.reloadData()
-            
-            self?.spinner.stopAnimating()
-            self?.fetchingMore = false
-        }
-        networkManager.fetchData(withPageNumber: currentPage)
+        fetchData()
+        imageDownloader = ImageDownloadManager()
     }
     
     // MARK: - Table view data source
@@ -65,16 +48,45 @@ class ExhibitionTableViewController: UITableViewController {
         }
         
         let exhibit = exhibits[indexPath.row]
-        cell.name.text = exhibit.title
+        cell.updateView(with: exhibit)
         
-        networkManager.downloadImage(fromUrl: exhibit.imageUrl, withIdentifier: exhibit.title) { image in
+        imageDownloader.downloadImage(fromUrl: exhibit.imageUrl, withIdentifier: exhibit.title) { image in
             self.exhibits[indexPath.row].photo = image
-            cell.photo.image = image
+            cell.updateView(with: self.exhibits[indexPath.row])
         }
         
         return cell
     }
 
+    //MARK: - UI initialization
+    
+    func createSpinner() {
+        spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.hidesWhenStopped = true
+        spinner.startAnimating()
+        tableView.addSubview(spinner)
+        
+        spinner.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
+    }
+    
+    func fetchData() {
+        networkManager.fetchData(withPageNumber: currentPage) { [weak self] newExhibits in
+            guard let self = self else {
+                return
+            }
+            if newExhibits.isEmpty {
+                self.isLastPage = true
+            }
+            self.exhibits += newExhibits
+            self.tableView.reloadData()
+            
+            self.spinner.stopAnimating()
+            self.fetchingMore = false
+        }
+    }
+    
     // MARK: - Scrolling
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -82,7 +94,7 @@ class ExhibitionTableViewController: UITableViewController {
         let contentHeigh = scrollView.contentSize.height
         
         if offsetY > contentHeigh - scrollView.frame.height {
-            if !fetchingMore  && !isLastPage{
+            if !fetchingMore  && !isLastPage {
                 updateData()
             }
         }
@@ -92,7 +104,7 @@ class ExhibitionTableViewController: UITableViewController {
         fetchingMore = true
         spinner.startAnimating()
         currentPage += 1
-        networkManager.fetchData(withPageNumber: currentPage)
+        fetchData()
     }
     
      // MARK: - Navigation
@@ -121,3 +133,4 @@ class ExhibitionTableViewController: UITableViewController {
         }
      }
 }
+

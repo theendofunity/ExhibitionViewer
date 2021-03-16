@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840CCE3E26010DF600CAD9FA /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CCE3D26010DF600CAD9FA /* ImageDownloadManager.swift */; };
 		847B78B325EBFBFC00F0D81D /* Exhibit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78B225EBFBFC00F0D81D /* Exhibit.swift */; };
 		847B78CA25ED63D500F0D81D /* ExhibitionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */; };
 		847B78DA25ED6EA600F0D81D /* ExhibitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		840CCE3D26010DF600CAD9FA /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		847B78B225EBFBFC00F0D81D /* Exhibit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibit.swift; sourceTree = "<group>"; };
 		847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionTableViewController.swift; sourceTree = "<group>"; };
 		847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitTableViewCell.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				847B78E325F51FB700F0D81D /* NetworkExhibitionManager.swift */,
+				840CCE3D26010DF600CAD9FA /* ImageDownloadManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -118,7 +121,6 @@
 		840CCE342601006900CAD9FA /* Recources */ = {
 			isa = PBXGroup;
 			children = (
-				847F067D25E6C01500338B31 /* Info.plist */,
 				847B78DE25F51E0E00F0D81D /* ApiKey.swift */,
 				847F067825E6C01500338B31 /* Assets.xcassets */,
 			);
@@ -168,6 +170,7 @@
 			children = (
 				847F066F25E6C00000338B31 /* AppDelegate.swift */,
 				847F067125E6C00000338B31 /* SceneDelegate.swift */,
+				847F067D25E6C01500338B31 /* Info.plist */,
 				840CCE39260101A500CAD9FA /* Controllers */,
 				840CCE2E2600FF2200CAD9FA /* Models */,
 				840CCE302600FF5D00CAD9FA /* Networking */,
@@ -335,6 +338,7 @@
 				847F067425E6C00000338B31 /* ExhibitViewController.swift in Sources */,
 				847B78E425F51FB700F0D81D /* NetworkExhibitionManager.swift in Sources */,
 				847B78CA25ED63D500F0D81D /* ExhibitionTableViewController.swift in Sources */,
+				840CCE3E26010DF600CAD9FA /* ImageDownloadManager.swift in Sources */,
 				847F067025E6C00000338B31 /* AppDelegate.swift in Sources */,
 				847B78B325EBFBFC00F0D81D /* Exhibit.swift in Sources */,
 				847B78DF25F51E0E00F0D81D /* ApiKey.swift in Sources */,

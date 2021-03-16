@@ -28,14 +28,15 @@ class ExhibitViewController: UIViewController {
     }
 
     func updateInterface() {
-        if let unwrappedExhibit = exhibit {
-            name.text = unwrappedExhibit.title
-            photo.image = unwrappedExhibit.photo
-            workTypeDataLabel.text = unwrappedExhibit.classification
-            objectNumberDataLabel.text = unwrappedExhibit.objectNumber
-            dateLabel.text = String(unwrappedExhibit.date)
-            peopleDataLabel.text = unwrappedExhibit.autorsString
+        guard let exhibit = exhibit else {
+            return
         }
+        name.text = exhibit.title
+        photo.image = exhibit.photo
+        workTypeDataLabel.text = exhibit.classification
+        objectNumberDataLabel.text = exhibit.objectNumber
+        dateLabel.text = String(exhibit.date)
+        peopleDataLabel.text = exhibit.authorsString
     }
 
     @IBAction func showDescription(_ sender: Any) {
