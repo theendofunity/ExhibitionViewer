@@ -7,26 +7,48 @@
 
 import Foundation
 
+enum RequestType {
+    case floor(floorNumber: Int)
+    case gallery(galleryNumber: Int)
+    case galleryPage(galleryNumber: Int, pageNumber: Int)
+}
+
 class NetworkExhibitionManager {
     let baseUrlString = "https://api.harvardartmuseums.org/"
     
-    func fetchData(withPageNumber page: Int, onCompletion: @escaping (([Exhibit]) -> Void)) {
-        let urlString = baseUrlString + "object?gallery=2220&apikey=\(apiKey)&page=\(page)"
+    func load<T>(type: RequestType, withCompletion completion: @escaping (([T]?) -> Void)) {
+        let urlString = urlStringByType(type: type)
         guard let url = URL(string: urlString) else {
             print("Incorrect URL \(urlString)")
-            return
+            return completion(nil)
         }
         let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { data, response, error in
-            if let data = data {
-                if let exhibits = self.parseJSON(withData: data) {
-                    DispatchQueue.main.async {
-                        onCompletion(exhibits)
-                    }
-                }
+        let task = session.dataTask(with: url) {(data, request, error) in
+            guard let data = data else {
+                completion(nil)
+                return
+            }
+            let parsedData = self.parseJSON(withData: data)
+            
+            DispatchQueue.main.async {
+                completion(parsedData as? [T])
             }
         }
         task.resume()
+    }
+    
+    func urlStringByType(type: RequestType) -> String {
+        var urlString: String = baseUrlString
+        
+        switch type {
+        case .floor(let floorNumber):
+            urlString += "gallery?floor=\(floorNumber)&apikey=\(apiKey)"
+        case .gallery(let galleryNumber):
+            urlString += "object?gallery=\(galleryNumber)&apikey=\(apiKey)"
+        case .galleryPage(let galleryNumber, let pageNumber):
+            urlString += "object?gallery=\(galleryNumber)&page=\(pageNumber)&apikey=\(apiKey)"
+        }
+        return urlString
     }
     
     func parseJSON(withData data: Data) -> [Exhibit]? {

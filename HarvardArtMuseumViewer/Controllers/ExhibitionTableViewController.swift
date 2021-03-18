@@ -72,8 +72,12 @@ class ExhibitionTableViewController: UITableViewController {
     }
     
     func fetchData() {
-        networkManager.fetchData(withPageNumber: currentPage) { [weak self] newExhibits in
+        let requestType = RequestType.galleryPage(galleryNumber: 2220, pageNumber: currentPage)
+        networkManager.load(type: requestType) { [weak self] (newExhibits: [Exhibit]?) in
             guard let self = self else {
+                return
+            }
+            guard let newExhibits = newExhibits else {
                 return
             }
             if newExhibits.isEmpty {
@@ -81,7 +85,7 @@ class ExhibitionTableViewController: UITableViewController {
             }
             self.exhibits += newExhibits
             self.tableView.reloadData()
-            
+
             self.spinner.stopAnimating()
             self.fetchingMore = false
         }
