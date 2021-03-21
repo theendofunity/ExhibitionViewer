@@ -72,25 +72,34 @@ class ExhibitionTableViewController: UITableViewController {
     }
     
     func fetchData() {
-        let requestType = RequestType.galleryPage(galleryNumber: 2220, pageNumber: currentPage)
-        networkManager.load(type: requestType) { [weak self] (newExhibits: [Exhibit]?) in
+        let requestType = GalleryPageRequest(galleryNumber: 2220, pageNumber: currentPage)
+        networkManager.load(request: requestType) { [weak self] (galleryData: GalleryData?) in
             guard let self = self else {
                 return
             }
-            guard let newExhibits = newExhibits else {
+            guard let galleryData = galleryData else {
                 return
             }
-            if newExhibits.isEmpty {
-                self.isLastPage = true
-            }
-            self.exhibits += newExhibits
-            self.tableView.reloadData()
-
-            self.spinner.stopAnimating()
-            self.fetchingMore = false
+            self.updateExhibits(fromGalleryData: galleryData)
         }
     }
     
+    func updateExhibits(fromGalleryData data: GalleryData) {
+        self.exhibits.removeAll()
+        for record in data.records {
+            guard let newExhibit = Exhibit(record: record) else {
+                continue
+            }
+            exhibits.append(newExhibit)
+        }
+        if self.exhibits.isEmpty {
+            self.isLastPage = true
+        }
+        
+        self.tableView.reloadData()
+        self.spinner.stopAnimating()
+        self.fetchingMore = false
+    }
     // MARK: - Scrolling
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -8,16 +8,16 @@
 import UIKit
 
 struct Exhibit {
-    let title: String
-    let imageUrl: String
-    let classification: String
+    var title: String
+    var imageUrl: String
+    var classification: String
     var authors = [String]()
     var authorsString: String {
         authors.joined(separator: " ")
     }
-    let objectNumber: String
-    let date: Int
-    let label: String
+    var objectNumber: String
+    var date: Int
+    var label: String
     var photo: UIImage? 
 
     
@@ -29,7 +29,7 @@ struct Exhibit {
         self.date = record.dateBegin
         self.label = record.labelText ?? "No description"
         self.photo = UIImage(named: "Placeholder image")
-        
+
         for author in record.people {
             self.authors.append(author.name)
         }
