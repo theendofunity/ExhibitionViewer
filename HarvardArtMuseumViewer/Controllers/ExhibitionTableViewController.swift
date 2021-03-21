@@ -73,6 +73,7 @@ class ExhibitionTableViewController: UITableViewController {
     
     func fetchData() {
         let requestType = GalleryPageRequest(galleryNumber: 2220, pageNumber: currentPage)
+        title = "Gallery \(requestType.galleryNumber)"
         networkManager.load(request: requestType) { [weak self] (galleryData: GalleryData?) in
             guard let self = self else {
                 return
