@@ -13,4 +13,10 @@ class GalleryCell: UICollectionViewCell {
     var galleryName = ""
     
     @IBOutlet weak var galleryTitleLabel: UILabel!
+    
+    func updateView(with gallery: Gallery) {
+        galleryName = gallery.name
+        galleryNumber = gallery.id
+        galleryTitleLabel.text = galleryName
+    }
 }

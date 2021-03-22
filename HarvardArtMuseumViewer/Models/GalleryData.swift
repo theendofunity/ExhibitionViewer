@@ -9,7 +9,7 @@ import Foundation
 
 struct GalleryData: Decodable {
     let info: Info
-    let records: [Record]
+    let records: [GalleryRecord]
 }
 
 struct Info: Decodable {
@@ -24,7 +24,7 @@ struct Info: Decodable {
     }
 }
 
-struct Record: Decodable {
+struct GalleryRecord: Decodable {
     let classification: String
     let title: String
     let objectNumber: String

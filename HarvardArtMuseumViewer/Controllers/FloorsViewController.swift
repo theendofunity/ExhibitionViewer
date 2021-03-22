@@ -13,21 +13,13 @@ class FloorsViewController: UICollectionViewController {
 
     //MARK: - Properties
     
+    let networkManager = NetworkExhibitionManager()
+    
     let floors = [1, 2, 3, 4, 5]
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
 
@@ -42,11 +34,53 @@ class FloorsViewController: UICollectionViewController {
             fatalError("Unknown cell")
         }
         cell.floorNumber = indexPath.row + 1
-        // Configure the cell
     
         return cell
     }
 
+
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == "showGalleries" {
+            guard let cell  = sender as? FloorCell else {
+                fatalError("Unexpected sender")
+            }
+            guard let viewController = segue.destination as? GalleriesController else {
+                fatalError("Unexpected destination")
+            }
+            
+            loadGalleries(forFloor: cell.floorNumber) { galleries in
+                print(galleries)
+                viewController.update(with: galleries)
+            }
+            
+        } else {
+            fatalError("Unknown Identifier")
+        }
+    }
+
+    func loadGalleries(forFloor floor: Int, withCompletion completion: @escaping ([Gallery]) -> Void) {
+        let request = FloorPageRequest(floorNumber: floor)
+        
+        networkManager.load(request: request){[weak self] (floorData: FloorData?) in
+
+            guard let floorData = floorData else {
+                return
+            }
+            
+            var galleries = [Gallery]()
+            for record in floorData.records {
+                let gallery = Gallery(with: record)
+                galleries.append(gallery)
+            }
+            completion(galleries)
+        }
+    }
+    
     // MARK: UICollectionViewDelegate
 
     /*

@@ -21,7 +21,7 @@ struct Exhibit {
     var photo: UIImage? 
 
     
-    init?(record: Record) {
+    init?(record: GalleryRecord) {
         self.title = record.title
         self.imageUrl = record.imageUrl
         self.classification = record.classification
