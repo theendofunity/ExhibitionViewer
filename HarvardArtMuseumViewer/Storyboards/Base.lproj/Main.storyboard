@@ -12,7 +12,7 @@
         <!--Exhibition Table View Controller-->
         <scene sceneID="eG9-76-XTr">
             <objects>
-                <tableViewController id="5Cx-i6-8lT" customClass="ExhibitionTableViewController" customModule="HarvardArtMuseumViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ExhibitsTableViewController" id="5Cx-i6-8lT" customClass="ExhibitionTableViewController" customModule="HarvardArtMuseumViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GXD-ZZ-ike">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -90,27 +90,23 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37N-7I-8Gl">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="150" id="b9o-ow-m5F"/>
-                                                <constraint firstAttribute="width" constant="150" id="lde-QJ-zST"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="37N-7I-8Gl" secondAttribute="bottom" id="NT6-Pr-2vQ"/>
-                                        <constraint firstItem="37N-7I-8Gl" firstAttribute="leading" secondItem="MqD-E1-3CM" secondAttribute="leading" id="Yp3-Vb-vXn"/>
-                                        <constraint firstItem="37N-7I-8Gl" firstAttribute="top" secondItem="MqD-E1-3CM" secondAttribute="top" id="fXt-9Y-Aqk"/>
-                                        <constraint firstAttribute="trailing" secondItem="37N-7I-8Gl" secondAttribute="trailing" id="o36-aA-3bR"/>
+                                        <constraint firstAttribute="bottom" secondItem="37N-7I-8Gl" secondAttribute="bottom" id="0HZ-00-fta"/>
+                                        <constraint firstItem="37N-7I-8Gl" firstAttribute="top" secondItem="MqD-E1-3CM" secondAttribute="top" id="Rpd-0b-Qwd"/>
+                                        <constraint firstAttribute="trailing" secondItem="37N-7I-8Gl" secondAttribute="trailing" id="d17-Y0-mKg"/>
+                                        <constraint firstItem="37N-7I-8Gl" firstAttribute="leading" secondItem="MqD-E1-3CM" secondAttribute="leading" id="rqP-Wl-9V6"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <color key="backgroundColor" systemColor="secondaryLabelColor"/>
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
                                     <outlet property="floorNumberLabel" destination="37N-7I-8Gl" id="JT3-vh-6rK"/>
-                                    <segue destination="bbc-HN-GPA" kind="show" identifier="showGalleries" id="NAG-Ll-sMu"/>
+                                    <segue destination="gL5-Rr-7Bn" kind="show" identifier="showGalleries" id="QCn-hL-Io5"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -245,81 +241,63 @@
             </objects>
             <point key="canvasLocation" x="2243" y="792"/>
         </scene>
-        <!--Galleries Controller-->
-        <scene sceneID="J5f-RR-1jv">
+        <!--Galleries View Controller-->
+        <scene sceneID="JYm-KO-D90">
             <objects>
-                <collectionViewController id="bbc-HN-GPA" customClass="GalleriesController" customModule="HarvardArtMuseumViewer" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="8My-vI-KH2">
+                <collectionViewController id="gL5-Rr-7Bn" customClass="GalleriesViewController" customModule="HarvardArtMuseumViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="y0h-9f-L92">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="G35-PQ-vt7">
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aEZ-Lv-f0F">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCell" id="SN3-wF-IBc" customClass="GalleryCell" customModule="HarvardArtMuseumViewer" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCell" id="OVJ-Ie-wjt" customClass="GalleryCell" customModule="HarvardArtMuseumViewer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fBJ-GH-T9d" customClass="GalleryCell" customModule="HarvardArtMuseumViewer" customModuleProvider="target">
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XPc-Iw-qwO">
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkC-x4-phI">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWo-qJ-Xce">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="42" id="Q1E-XN-md4"/>
-                                                <constraint firstAttribute="height" constant="21" id="YYd-RL-qB4"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="pkC-x4-phI" secondAttribute="trailing" id="Y4Y-Nb-tvu"/>
-                                        <constraint firstAttribute="bottom" secondItem="pkC-x4-phI" secondAttribute="bottom" id="aX7-CJ-6Wy"/>
-                                        <constraint firstItem="pkC-x4-phI" firstAttribute="top" secondItem="fBJ-GH-T9d" secondAttribute="top" id="f6q-eZ-agz"/>
-                                        <constraint firstItem="pkC-x4-phI" firstAttribute="leading" secondItem="fBJ-GH-T9d" secondAttribute="leading" id="jdD-AJ-ABc"/>
+                                        <constraint firstAttribute="bottom" secondItem="FWo-qJ-Xce" secondAttribute="bottom" id="7LR-FS-gUJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="FWo-qJ-Xce" secondAttribute="trailing" id="Aah-qT-alw"/>
+                                        <constraint firstItem="FWo-qJ-Xce" firstAttribute="leading" secondItem="XPc-Iw-qwO" secondAttribute="leading" id="EeL-z2-rcO"/>
+                                        <constraint firstAttribute="bottom" secondItem="FWo-qJ-Xce" secondAttribute="bottom" id="MBP-n8-Bam"/>
+                                        <constraint firstItem="FWo-qJ-Xce" firstAttribute="top" secondItem="XPc-Iw-qwO" secondAttribute="top" id="XrU-AG-WQG"/>
+                                        <constraint firstItem="FWo-qJ-Xce" firstAttribute="top" secondItem="XPc-Iw-qwO" secondAttribute="top" id="bF6-Ky-ytv"/>
+                                        <constraint firstAttribute="trailing" secondItem="FWo-qJ-Xce" secondAttribute="trailing" id="e7K-l2-FRm"/>
+                                        <constraint firstItem="FWo-qJ-Xce" firstAttribute="leading" secondItem="XPc-Iw-qwO" secondAttribute="leading" id="lNe-pg-Y3U"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
-                                    <outlet property="galleryTitleLabel" destination="pkC-x4-phI" id="JCh-MN-dIk"/>
-                                    <segue destination="5Cx-i6-8lT" kind="show" identifier="showExhibits" id="wDq-1f-kdH"/>
+                                    <outlet property="galleryTitleLabel" destination="FWo-qJ-Xce" id="I9K-9y-7fe"/>
+                                    <segue destination="5Cx-i6-8lT" kind="show" identifier="showExhibits" id="hRk-U0-16C"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
-                            <outlet property="dataSource" destination="bbc-HN-GPA" id="zUZ-zx-7DS"/>
-                            <outlet property="delegate" destination="bbc-HN-GPA" id="Nu6-JP-vPU"/>
+                            <outlet property="dataSource" destination="gL5-Rr-7Bn" id="Ci0-L3-neq"/>
+                            <outlet property="delegate" destination="gL5-Rr-7Bn" id="TJX-zo-AVW"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="7Jj-C8-TNF"/>
+                    <navigationItem key="navigationItem" id="0Ss-CY-k2f"/>
                 </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2CA-Oy-8Zu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9FC-2Y-ex6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="591" y="792"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="NNj-NM-CSf">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZBi-9E-jPK" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AGq-aF-4ZY">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="5Cx-i6-8lT" kind="relationship" relationship="rootViewController" id="TqQ-l4-ZRO"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Tm-GK-D5T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1389.8550724637682" y="40.848214285714285"/>
+            <point key="canvasLocation" x="496" y="792"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1SP-Ly-30R">
@@ -339,29 +317,7 @@
             </objects>
             <point key="canvasLocation" x="-354" y="25"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="CtV-Li-D3s">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A8b-cN-MJ6" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="t1X-Yu-o4c">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bbc-HN-GPA" kind="relationship" relationship="rootViewController" id="Xyi-7X-4pX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LMj-yt-ElI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="590" y="41"/>
-        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="NAG-Ll-sMu"/>
-        <segue reference="wDq-1f-kdH"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -14,6 +14,7 @@ class NetworkExhibitionManager {
     
     func load<T: Decodable>(request: Request, withCompletion completion: @escaping ((T?) -> Void)) {
         let urlString = "\(baseUrlString)\(request.pathWithParameters())"
+        print(urlString)
         guard let url = URL(string: urlString) else {
             print("Incorrect URL \(urlString)")
             return

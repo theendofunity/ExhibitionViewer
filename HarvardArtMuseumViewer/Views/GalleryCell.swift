@@ -10,13 +10,18 @@ import UIKit
 class GalleryCell: UICollectionViewCell {
     
     var galleryNumber = 0
-    var galleryName = ""
+    var galleryName = "" {
+        didSet {
+            galleryTitleLabel.text = galleryName
+        }
+    }
     
     @IBOutlet weak var galleryTitleLabel: UILabel!
     
     func updateView(with gallery: Gallery) {
         galleryName = gallery.name
         galleryNumber = gallery.id
-        galleryTitleLabel.text = galleryName
     }
+    
+    
 }

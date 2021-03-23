@@ -24,7 +24,6 @@ class FloorsViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return floors.count
     }
 
@@ -49,12 +48,11 @@ class FloorsViewController: UICollectionViewController {
             guard let cell  = sender as? FloorCell else {
                 fatalError("Unexpected sender")
             }
-            guard let viewController = segue.destination as? GalleriesController else {
+            guard let viewController = segue.destination as? GalleriesViewController else {
                 fatalError("Unexpected destination")
             }
             
             loadGalleries(forFloor: cell.floorNumber) { galleries in
-                print(galleries)
                 viewController.update(with: galleries)
             }
             
@@ -66,7 +64,7 @@ class FloorsViewController: UICollectionViewController {
     func loadGalleries(forFloor floor: Int, withCompletion completion: @escaping ([Gallery]) -> Void) {
         let request = FloorPageRequest(floorNumber: floor)
         
-        networkManager.load(request: request){[weak self] (floorData: FloorData?) in
+        networkManager.load(request: request){(floorData: FloorData?) in
 
             guard let floorData = floorData else {
                 return
@@ -74,42 +72,13 @@ class FloorsViewController: UICollectionViewController {
             
             var galleries = [Gallery]()
             for record in floorData.records {
+                if (galleries.count == 5) {
+                break
+                }
                 let gallery = Gallery(with: record)
                 galleries.append(gallery)
             }
             completion(galleries)
         }
     }
-    
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }

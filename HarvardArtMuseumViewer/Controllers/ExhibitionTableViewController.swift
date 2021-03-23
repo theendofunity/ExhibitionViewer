@@ -11,9 +11,10 @@ class ExhibitionTableViewController: UITableViewController {
     
     //MARK: Properties
     
+    var galleryNumber: Int = 0
     var exhibits = [Exhibit]()
-    var networkManager: NetworkExhibitionManager!
-    var imageDownloader: ImageDownloadManager!
+    var networkManager = NetworkExhibitionManager()
+    var imageDownloader = ImageDownloadManager()
     var spinner: UIActivityIndicatorView!
     var currentPage = 1
     var fetchingMore = false
@@ -25,9 +26,8 @@ class ExhibitionTableViewController: UITableViewController {
         super.viewDidLoad()
         
         createSpinner()
-        networkManager = NetworkExhibitionManager()
-        fetchData()
-        imageDownloader = ImageDownloadManager()
+//        networkManager = NetworkExhibitionManager()
+//        imageDownloader = ImageDownloadManager()
     }
     
     // MARK: - Table view data source
@@ -51,6 +51,9 @@ class ExhibitionTableViewController: UITableViewController {
         cell.updateView(with: exhibit)
         
         imageDownloader.downloadImage(fromUrl: exhibit.imageUrl, withIdentifier: exhibit.title) { image in
+            if indexPath.row > self.exhibits.count {
+                return
+            }
             self.exhibits[indexPath.row].photo = image
             cell.updateView(with: self.exhibits[indexPath.row])
         }
@@ -71,9 +74,11 @@ class ExhibitionTableViewController: UITableViewController {
         spinner.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
     }
     
-    func fetchData() {
-        let requestType = GalleryPageRequest(galleryNumber: 2220, pageNumber: currentPage)
-        title = "Gallery \(requestType.galleryNumber)"
+    func loadExhibits(fromGallery gallery: Int) {
+        print("gallery number \(gallery)")
+        
+        let requestType = GalleryPageRequest(galleryNumber: gallery, pageNumber: currentPage)
+        title = "Gallery \(gallery)"
         networkManager.load(request: requestType) { [weak self] (galleryData: GalleryData?) in
             guard let self = self else {
                 return
@@ -101,6 +106,7 @@ class ExhibitionTableViewController: UITableViewController {
         self.spinner.stopAnimating()
         self.fetchingMore = false
     }
+    
     // MARK: - Scrolling
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -115,12 +121,16 @@ class ExhibitionTableViewController: UITableViewController {
     }
     
     func updateData() {
-        fetchingMore = true
-        spinner.startAnimating()
-        currentPage += 1
-        fetchData()
+//        fetchingMore = true
+//        spinner.startAnimating()
+//        currentPage += 1
+//        loadExhibits(fromGallery: galleryNumber)
     }
     
+    func clearData() {
+        currentPage = 0
+        exhibits.removeAll()
+    }
      // MARK: - Navigation
      
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -146,5 +156,10 @@ class ExhibitionTableViewController: UITableViewController {
             fatalError("Unexpected segue identifier \(identifier)")
         }
      }
+    
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        self.clearData()
+    }
 }
 

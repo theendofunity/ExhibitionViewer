@@ -11,10 +11,10 @@
 		840CCE4E26078C9900CAD9FA /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CCE4D26078C9900CAD9FA /* Requests.swift */; };
 		840CCE5F2607B71A00CAD9FA /* FloorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CCE5E2607B71A00CAD9FA /* FloorsViewController.swift */; };
 		840CCE642607B75100CAD9FA /* FloorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CCE632607B75100CAD9FA /* FloorCell.swift */; };
-		840CCE692607BB9900CAD9FA /* GalleriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CCE682607BB9900CAD9FA /* GalleriesController.swift */; };
 		840CCE6E2607BBB300CAD9FA /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CCE6D2607BBB300CAD9FA /* GalleryCell.swift */; };
 		840CCE732608F06600CAD9FA /* FloorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CCE722608F06600CAD9FA /* FloorData.swift */; };
 		840CCE782608F19700CAD9FA /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CCE772608F19700CAD9FA /* Gallery.swift */; };
+		840CCE83260A684500CAD9FA /* GalleriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840CCE82260A684400CAD9FA /* GalleriesViewController.swift */; };
 		847B78B325EBFBFC00F0D81D /* Exhibit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78B225EBFBFC00F0D81D /* Exhibit.swift */; };
 		847B78CA25ED63D500F0D81D /* ExhibitionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */; };
 		847B78DA25ED6EA600F0D81D /* ExhibitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */; };
@@ -54,10 +54,10 @@
 		840CCE4D26078C9900CAD9FA /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		840CCE5E2607B71A00CAD9FA /* FloorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorsViewController.swift; sourceTree = "<group>"; };
 		840CCE632607B75100CAD9FA /* FloorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorCell.swift; sourceTree = "<group>"; };
-		840CCE682607BB9900CAD9FA /* GalleriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleriesController.swift; sourceTree = "<group>"; };
 		840CCE6D2607BBB300CAD9FA /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		840CCE722608F06600CAD9FA /* FloorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorData.swift; sourceTree = "<group>"; };
 		840CCE772608F19700CAD9FA /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
+		840CCE82260A684400CAD9FA /* GalleriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleriesViewController.swift; sourceTree = "<group>"; };
 		847B78B225EBFBFC00F0D81D /* Exhibit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibit.swift; sourceTree = "<group>"; };
 		847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionTableViewController.swift; sourceTree = "<group>"; };
 		847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitTableViewCell.swift; sourceTree = "<group>"; };
@@ -158,10 +158,10 @@
 		840CCE39260101A500CAD9FA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				840CCE5E2607B71A00CAD9FA /* FloorsViewController.swift */,
+				840CCE82260A684400CAD9FA /* GalleriesViewController.swift */,
 				847B78C925ED63D500F0D81D /* ExhibitionTableViewController.swift */,
 				847F067325E6C00000338B31 /* ExhibitViewController.swift */,
-				840CCE5E2607B71A00CAD9FA /* FloorsViewController.swift */,
-				840CCE682607BB9900CAD9FA /* GalleriesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -371,7 +371,7 @@
 				847B78DF25F51E0E00F0D81D /* ApiKey.swift in Sources */,
 				847F067225E6C00000338B31 /* SceneDelegate.swift in Sources */,
 				847B78DA25ED6EA600F0D81D /* ExhibitTableViewCell.swift in Sources */,
-				840CCE692607BB9900CAD9FA /* GalleriesController.swift in Sources */,
+				840CCE83260A684500CAD9FA /* GalleriesViewController.swift in Sources */,
 				847B78E925F5326600F0D81D /* GalleryData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
