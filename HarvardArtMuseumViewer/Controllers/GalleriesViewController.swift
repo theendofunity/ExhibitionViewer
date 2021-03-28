@@ -14,6 +14,7 @@ class GalleriesViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurateLayout()
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -25,11 +26,28 @@ class GalleriesViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? GalleryCell else {
             fatalError("Unknown cell")
         }
-        cell.frame.size = CGSize(width: 150, height: 150)
+
         cell.backgroundColor = .blue
+        cell.galleryTitleLabel.numberOfLines = 0
         cell.updateView(with: galleries[indexPath.item])
     
         return cell
+    }
+    
+    func configurateLayout() {
+        let itemsAtRow: CGFloat = 2
+        let inset: CGFloat = 20
+
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+        layout.minimumInteritemSpacing = inset
+        layout.minimumLineSpacing = inset
+
+        let paddingWidth = inset * (itemsAtRow + 1)
+        let availableWidth = collectionView.frame.width - paddingWidth
+        let widthForItem = availableWidth / itemsAtRow
+        layout.itemSize = CGSize(width: widthForItem, height: widthForItem)
+        print(widthForItem)
     }
     
     func update(with data: [Gallery]) {

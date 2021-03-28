@@ -109,21 +109,21 @@ class ExhibitionTableViewController: UITableViewController {
     
     // MARK: - Scrolling
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeigh = scrollView.contentSize.height
-        
-        if offsetY > contentHeigh - scrollView.frame.height {
-            if !fetchingMore  && !isLastPage {
-                updateData()
-            }
-        }
-    }
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offsetY = scrollView.contentOffset.y
+//        let contentHeigh = scrollView.contentSize.height
+//        
+//        if offsetY > contentHeigh - scrollView.frame.height {
+//            if !fetchingMore  && !isLastPage {
+//                updateData()
+//            }
+//        }
+//    }
     
     func updateData() {
-//        fetchingMore = true
-//        spinner.startAnimating()
-//        currentPage += 1
+        fetchingMore = true
+        spinner.startAnimating()
+        currentPage += 1
 //        loadExhibits(fromGallery: galleryNumber)
     }
     
