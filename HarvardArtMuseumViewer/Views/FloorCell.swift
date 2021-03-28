@@ -9,11 +9,14 @@ import UIKit
 
 class FloorCell: UICollectionViewCell {
     
-    var floorNumber: Int = 0 {
-        didSet {
-            floorNumberLabel.text = "\(floorNumber)"
+    @IBOutlet weak var floorNumberLabel: UILabel!
+    
+    var viewModel: FloorCellViewModelType? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            floorNumberLabel.text = viewModel.cellTitle
         }
     }
     
-    @IBOutlet weak var floorNumberLabel: UILabel!
+
 }

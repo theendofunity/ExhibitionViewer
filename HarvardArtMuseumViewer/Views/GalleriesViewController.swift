@@ -1,45 +1,40 @@
 //
-//  FloorsViewController.swift
+//  TestCollectionViewController.swift
 //  HarvardArtMuseumViewer
 //
-//  Created by Admin on 21.03.2021.
+//  Created by Admin on 23.03.2021.
 //
 
 import UIKit
 
-class FloorsViewController: UICollectionViewController {
+class GalleriesViewController: UICollectionViewController {
 
     //MARK: - Properties
-    
     let networkManager = NetworkExhibitionManager()
-    
-    let floors = [1, 2, 3, 4, 5]
-    
-    
+    var galleries = [Gallery]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configurateLayout()
     }
-
-    // MARK: UICollectionViewDataSource
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return floors.count
+        return galleries.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let identifier = "FloorCell"
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? FloorCell else {
+        let identifier = "GalleryCell"
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? GalleryCell else {
             fatalError("Unknown cell")
         }
-        cell.floorNumber = indexPath.row + 1
+
+        cell.backgroundColor = .blue
+        cell.galleryTitleLabel.numberOfLines = 0
+        cell.updateView(with: galleries[indexPath.item])
     
         return cell
     }
-
-
+    
     func configurateLayout() {
         let itemsAtRow: CGFloat = 2
         let inset: CGFloat = 20
@@ -53,46 +48,48 @@ class FloorsViewController: UICollectionViewController {
         let availableWidth = collectionView.frame.width - paddingWidth
         let widthForItem = availableWidth / itemsAtRow
         layout.itemSize = CGSize(width: widthForItem, height: widthForItem)
+        print(widthForItem)
     }
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-
-        if segue.identifier == "showGalleries" {
-            guard let cell  = sender as? FloorCell else {
-                fatalError("Unexpected sender")
-            }
-            guard let viewController = segue.destination as? GalleriesViewController else {
-                fatalError("Unexpected destination")
-            }
-
-            loadGalleries(forFloor: cell.floorNumber) { galleries in
-                viewController.update(with: galleries)
-            }
-
-        } else {
-            fatalError("Unknown Identifier")
-        }
+    
+    func update(with data: [Gallery]) {
+        galleries = data
+        collectionView.reloadData()
     }
 
-    func loadGalleries(forFloor floor: Int, withCompletion completion: @escaping ([Gallery]) -> Void) {
+    func fetchData(forFloor floor: Int) {
         let request = FloorPageRequest(floorNumber: floor)
-
+        
         networkManager.load(request: request){(floorData: FloorData?) in
-
+            
             guard let floorData = floorData else {
                 return
             }
-
+            
             var galleries = [Gallery]()
             for record in floorData.records {
                 let gallery = Gallery(with: record)
                 galleries.append(gallery)
             }
-            completion(galleries)
+            self.update(with: galleries)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        print("Prepare from gallery controller")
+        if segue.identifier == "showExhibits" {
+            guard let cell  = sender as? GalleryCell else {
+                fatalError("Unexpected sender")
+            }
+            guard let viewController = segue.destination as? ExhibitionTableViewController else {
+                fatalError("Unexpected destination")
+            }
+            print("PREPARE \(cell.galleryName)")
+            viewController.galleryNumber = cell.galleryNumber
+            viewController.loadExhibits(fromGallery: cell.galleryNumber)
+
+        } else {
+            fatalError("Unknown Identifier")
         }
     }
 }
-
