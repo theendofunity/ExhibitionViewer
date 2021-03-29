@@ -11,28 +11,34 @@ class GalleriesViewController: UICollectionViewController {
 
     //MARK: - Properties
     let networkManager = NetworkExhibitionManager()
-    var galleries = [Gallery]()
+    var viewModel: GalleriesViewModelType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateLayout()
+        viewModel = GalleriesViewModel()
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return galleries.count
+        return viewModel?.numberOfRows() ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let identifier = "GalleryCell"
+        guard let cellViewModel = viewModel?.cellViewModel(forIndexPath: indexPath) else { return UICollectionViewCell() }
+        let identifier = cellViewModel.identifier
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? GalleryCell else {
             fatalError("Unknown cell")
         }
 
-        cell.backgroundColor = .blue
-        cell.galleryTitleLabel.numberOfLines = 0
-        cell.updateView(with: galleries[indexPath.item])
+        cell.viewModel = cellViewModel
     
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel?.selectCell(toIndexPath: indexPath)
+        
+        performSegue(withIdentifier: "showExhibits", sender: nil)
     }
     
     func configurateLayout() {
@@ -48,19 +54,19 @@ class GalleriesViewController: UICollectionViewController {
         let availableWidth = collectionView.frame.width - paddingWidth
         let widthForItem = availableWidth / itemsAtRow
         layout.itemSize = CGSize(width: widthForItem, height: widthForItem)
-        print(widthForItem)
     }
     
     func update(with data: [Gallery]) {
-        galleries = data
+        viewModel?.update(with: data)
         collectionView.reloadData()
     }
 
     func fetchData(forFloor floor: Int) {
+        title = "Floor \(floor)"
+        
         let request = FloorPageRequest(floorNumber: floor)
         
         networkManager.load(request: request){(floorData: FloorData?) in
-            
             guard let floorData = floorData else {
                 return
             }
@@ -76,17 +82,12 @@ class GalleriesViewController: UICollectionViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        print("Prepare from gallery controller")
         if segue.identifier == "showExhibits" {
-            guard let cell  = sender as? GalleryCell else {
-                fatalError("Unexpected sender")
-            }
             guard let viewController = segue.destination as? ExhibitionTableViewController else {
                 fatalError("Unexpected destination")
             }
-            print("PREPARE \(cell.galleryName)")
-            viewController.galleryNumber = cell.galleryNumber
-            viewController.loadExhibits(fromGallery: cell.galleryNumber)
+            guard let galleryNumber = viewModel?.selectedGalleryNumber() else { return }
+            viewController.loadExhibits(fromGallery: galleryNumber)
 
         } else {
             fatalError("Unknown Identifier")

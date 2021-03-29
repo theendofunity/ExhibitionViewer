@@ -10,7 +10,7 @@ import UIKit
 class FloorsViewController: UICollectionViewController {
     //MARK: Properties
     
-    var viewModel: FloorCollectionViewViewModelType?
+    var viewModel: CollectionViewModelType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class FloorsViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellViewModel = viewModel?.floorCellViewModel(forIndexPath: indexPath)
+        let cellViewModel = viewModel?.cellViewModel(forIndexPath: indexPath)
         guard let identifier = cellViewModel?.identifier else { return UICollectionViewCell() }
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? FloorCell else {
             fatalError("Unknown cell")
@@ -65,7 +65,7 @@ class FloorsViewController: UICollectionViewController {
             guard let viewController = segue.destination as? GalleriesViewController else {
                 fatalError("Unexpected destination")
             }
-            guard let floor = cell.viewModel?.floorNumber else { return }
+            guard let floor = cell.viewModel?.requestId else { return }
             viewController.fetchData(forFloor: floor)
 
         } else {

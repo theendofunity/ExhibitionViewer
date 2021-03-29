@@ -10,4 +10,5 @@ import Foundation
 protocol CollectionViewCellViewModelType: class {
     var cellTitle: String { get }
     var identifier: String { get}
+    var requestId: Int { get }
 }

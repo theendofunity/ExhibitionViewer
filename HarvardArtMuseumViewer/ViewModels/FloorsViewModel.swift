@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FloorsViewModel: FloorCollectionViewViewModelType {
+class FloorsViewModel: CollectionViewModelType {
     
     let floors = [1, 2, 3, 4, 5]
     
@@ -20,10 +20,4 @@ class FloorsViewModel: FloorCollectionViewViewModelType {
         let cellModel = FloorCellViewModel(floorNumber: floorNumber)
         return cellModel
     }
-    
-    func floorCellViewModel(forIndexPath indexPath: IndexPath) -> FloorCellViewModelType? {
-        guard let cellViewModel = cellViewModel(forIndexPath: indexPath) else { return nil }
-        return cellViewModel as? FloorCellViewModelType
-    }
-    
 }

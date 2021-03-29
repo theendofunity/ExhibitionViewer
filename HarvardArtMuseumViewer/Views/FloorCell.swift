@@ -11,12 +11,10 @@ class FloorCell: UICollectionViewCell {
     
     @IBOutlet weak var floorNumberLabel: UILabel!
     
-    var viewModel: FloorCellViewModelType? {
+    var viewModel: CollectionViewCellViewModelType? {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
             floorNumberLabel.text = viewModel.cellTitle
         }
     }
-    
-
 }
