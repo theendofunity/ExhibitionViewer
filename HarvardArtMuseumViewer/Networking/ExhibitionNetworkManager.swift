@@ -9,7 +9,7 @@ import Foundation
 
 
 
-class NetworkExhibitionManager {
+class ExhibitionNetworkManager {
     let baseUrlString = "https://api.harvardartmuseums.org/"
     
     func load<T: Decodable>(request: Request, withCompletion completion: @escaping ((T?) -> Void)) {

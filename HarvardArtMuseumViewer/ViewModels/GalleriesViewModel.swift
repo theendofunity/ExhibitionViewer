@@ -9,10 +9,16 @@ import Foundation
 
 class GalleriesViewModel: GalleriesViewModelType {
     
+    var floorNumber: Int?
     var selectedCell: IndexPath?
-    
     var galleries = [Gallery]()
     
+    let networkManager: NetworkManager = NetworkManager()
+   
+    init(floorNumber: Int) {
+        self.floorNumber = floorNumber
+    }
+
     func gallery(forIndexPath indexPath: IndexPath) -> Gallery {
         return galleries[indexPath.item]
     }
@@ -26,8 +32,13 @@ class GalleriesViewModel: GalleriesViewModelType {
         return GalleriesCellViewModel(gallery: gallery)
     }
     
-    func update(with galleries: [Gallery]) { //  remove after networkManagerRefactoring
-        self.galleries = galleries
+    func loadGalleries(completion: @escaping () -> Void) {
+        guard let floor = floorNumber else { return }
+        networkManager.loadGalleries(forFloor: floor) { galleries in
+            self.galleries = galleries
+            completion()
+        }
+        
     }
     
     func selectCell(toIndexPath indexPath: IndexPath) {

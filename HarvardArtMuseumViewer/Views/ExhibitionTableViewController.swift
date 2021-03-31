@@ -13,7 +13,7 @@ class ExhibitionTableViewController: UITableViewController {
     
     var galleryNumber: Int = 0
     var exhibits = [Exhibit]()
-    var networkManager = NetworkExhibitionManager()
+    var networkManager = ExhibitionNetworkManager()
     var imageDownloader = ImageDownloadManager()
     var spinner: UIActivityIndicatorView!
     var currentPage = 1

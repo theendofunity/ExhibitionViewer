@@ -66,7 +66,8 @@ class FloorsViewController: UICollectionViewController {
                 fatalError("Unexpected destination")
             }
             guard let floor = cell.viewModel?.requestId else { return }
-            viewController.fetchData(forFloor: floor)
+            let galleriesViewModel = GalleriesViewModel(floorNumber: floor)
+            viewController.viewModel = galleriesViewModel
 
         } else {
             fatalError("Unknown Identifier")

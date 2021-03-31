@@ -10,13 +10,19 @@ import UIKit
 class GalleriesViewController: UICollectionViewController {
 
     //MARK: - Properties
-    let networkManager = NetworkExhibitionManager()
     var viewModel: GalleriesViewModelType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateLayout()
-        viewModel = GalleriesViewModel()
+        
+        DispatchQueue.main.async {
+            guard let viewModel = self.viewModel else { return }
+            viewModel.loadGalleries {
+                print("Completion")
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -54,30 +60,6 @@ class GalleriesViewController: UICollectionViewController {
         let availableWidth = collectionView.frame.width - paddingWidth
         let widthForItem = availableWidth / itemsAtRow
         layout.itemSize = CGSize(width: widthForItem, height: widthForItem)
-    }
-    
-    func update(with data: [Gallery]) {
-        viewModel?.update(with: data)
-        collectionView.reloadData()
-    }
-
-    func fetchData(forFloor floor: Int) {
-        title = "Floor \(floor)"
-        
-        let request = FloorPageRequest(floorNumber: floor)
-        
-        networkManager.load(request: request){(floorData: FloorData?) in
-            guard let floorData = floorData else {
-                return
-            }
-            
-            var galleries = [Gallery]()
-            for record in floorData.records {
-                let gallery = Gallery(with: record)
-                galleries.append(gallery)
-            }
-            self.update(with: galleries)
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
