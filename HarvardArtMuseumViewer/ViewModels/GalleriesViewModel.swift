@@ -27,7 +27,7 @@ class GalleriesViewModel: GalleriesViewModelType {
         return galleries.count
     }
     
-    func cellViewModel(forIndexPath indexPath: IndexPath) -> CollectionViewCellViewModelType? {
+    func cellViewModel(forIndexPath indexPath: IndexPath) -> CollectionCellViewModelType? {
         let gallery = galleries[indexPath.item]
         return GalleriesCellViewModel(gallery: gallery)
     }
@@ -38,16 +38,16 @@ class GalleriesViewModel: GalleriesViewModelType {
             self.galleries = galleries
             completion()
         }
-        
     }
     
     func selectCell(toIndexPath indexPath: IndexPath) {
         selectedCell = indexPath
     }
     
-    func selectedGalleryNumber() -> Int? {
+    func exhibitsViewModel() -> ExhibitionViewModelType? {
         guard let selectedCell = selectedCell else { return nil }
         let gallery = galleries[selectedCell.item]
-        return gallery.id
+        return ExhitionViewModel(galleryNumber: gallery.id)
     }
+
 }

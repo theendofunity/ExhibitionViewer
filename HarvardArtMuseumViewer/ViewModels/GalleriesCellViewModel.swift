@@ -7,7 +7,7 @@
 
 import Foundation
 
-class GalleriesCellViewModel: CollectionViewCellViewModelType {
+class GalleriesCellViewModel: CollectionCellViewModelType {
     var gallery: Gallery
     
     var cellTitle: String {
@@ -15,10 +15,6 @@ class GalleriesCellViewModel: CollectionViewCellViewModelType {
     }
     
     var identifier: String = "GalleryCell"
-    
-    var requestId: Int {
-        return gallery.id
-    }
     
     init(gallery: Gallery) {
         self.gallery = gallery

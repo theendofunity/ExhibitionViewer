@@ -9,5 +9,6 @@ import Foundation
 
 protocol CollectionViewModelType {
     func numberOfRows() -> Int
-    func cellViewModel(forIndexPath indexPath: IndexPath) -> CollectionViewCellViewModelType?
+    func cellViewModel(forIndexPath indexPath: IndexPath) -> CollectionCellViewModelType?
+    func selectCell(toIndexPath indexPath: IndexPath)
 }

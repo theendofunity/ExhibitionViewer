@@ -7,8 +7,7 @@
 
 import Foundation
 
-protocol CollectionViewCellViewModelType: class {
+protocol CollectionCellViewModelType: class {
     var cellTitle: String { get }
     var identifier: String { get}
-    var requestId: Int { get }
 }

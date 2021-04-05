@@ -7,17 +7,13 @@
 
 import Foundation
 
-class FloorCellViewModel: CollectionViewCellViewModelType {
+class FloorCellViewModel: CollectionCellViewModelType {
     var identifier: String = "FloorCell"
 
     var floorNumber: Int
     
     var cellTitle: String {
         return "Floor \(floorNumber)"
-    }
-    
-    var requestId: Int {
-        return floorNumber
     }
     
     init(floorNumber: Int) {

@@ -9,6 +9,5 @@ import Foundation
 
 protocol GalleriesViewModelType: CollectionViewModelType {
     func loadGalleries(completion: @escaping () -> Void)
-    func selectCell(toIndexPath indexPath: IndexPath)
-    func selectedGalleryNumber() -> Int?
+    func exhibitsViewModel() -> ExhibitionViewModelType?
 }

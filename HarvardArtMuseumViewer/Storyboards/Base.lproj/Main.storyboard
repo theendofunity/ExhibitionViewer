@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExhibitTableViewCell" id="pra-bi-AGe" customClass="ExhibitTableViewCell" customModule="HarvardArtMuseumViewer" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExhibitCell" id="pra-bi-AGe" customClass="ExhibitTableViewCell" customModule="HarvardArtMuseumViewer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pra-bi-AGe" id="KSe-Jg-jLL">
@@ -51,7 +51,7 @@
                                 <connections>
                                     <outlet property="name" destination="9hB-U3-3jg" id="kcb-oL-aRh"/>
                                     <outlet property="photo" destination="GWY-hk-GHH" id="9WT-LZ-u0P"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="Show details" id="D6w-7m-9hk"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showDetails" id="D6w-7m-9hk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -121,10 +121,10 @@
             </objects>
             <point key="canvasLocation" x="-355.07246376811599" y="791.51785714285711"/>
         </scene>
-        <!--Exhibit View Controller-->
+        <!--Detailed View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ExhibitViewController" customModule="HarvardArtMuseumViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="DetailedViewController" customModule="HarvardArtMuseumViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

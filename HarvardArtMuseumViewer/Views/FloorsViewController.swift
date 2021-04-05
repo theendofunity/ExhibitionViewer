@@ -10,7 +10,7 @@ import UIKit
 class FloorsViewController: UICollectionViewController {
     //MARK: Properties
     
-    var viewModel: CollectionViewModelType?
+    var viewModel: FloorsViewModelType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,11 @@ class FloorsViewController: UICollectionViewController {
         return cell
     }
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel?.selectCell(toIndexPath: indexPath)
+        performSegue(withIdentifier: "showGalleries", sender: nil)
+    }
+    
     //MARK: - UI Configuration
     
     func configurateLayout() {
@@ -59,16 +64,11 @@ class FloorsViewController: UICollectionViewController {
         super.prepare(for: segue, sender: sender)
 
         if segue.identifier == "showGalleries" {
-            guard let cell  = sender as? FloorCell else {
-                fatalError("Unexpected sender")
-            }
             guard let viewController = segue.destination as? GalleriesViewController else {
                 fatalError("Unexpected destination")
             }
-            guard let floor = cell.viewModel?.requestId else { return }
-            let galleriesViewModel = GalleriesViewModel(floorNumber: floor)
+            let galleriesViewModel = viewModel?.galleriesViewModel()
             viewController.viewModel = galleriesViewModel
-
         } else {
             fatalError("Unknown Identifier")
         }

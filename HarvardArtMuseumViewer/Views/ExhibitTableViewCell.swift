@@ -14,19 +14,11 @@ class ExhibitTableViewCell: UITableViewCell {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var name: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    weak var viewModel: ExhibitionCellViewModelType? {
+        willSet(viewModel){
+            guard let viewModel = viewModel else { return }
+            self.name.text = viewModel.cellTitle
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
-    func updateView(with exhibit: Exhibit) {
-        name.text = exhibit.title
-        photo.image = exhibit.photo
-    }
+    
 }

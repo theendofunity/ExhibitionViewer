@@ -7,12 +7,10 @@
 
 import UIKit
 
-class ExhibitViewController: UIViewController {
+class DetailedViewController: UIViewController {
 
     //MARK: Properties
     
-    var exhibit: Exhibit?
- 
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var photo: UIImageView!
     
@@ -21,16 +19,22 @@ class ExhibitViewController: UIViewController {
     @IBOutlet weak var workTypeDataLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
+    weak var viewModel: DetailedViewModelType? {
+        didSet {
+            self.updateInterface()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       updateInterface()
     }
 
     func updateInterface() {
-        guard let exhibit = exhibit else {
-            return
-        }
+        guard let viewModel = viewModel else { return }
+        
+        loadViewIfNeeded()
+        
+        let exhibit = viewModel.exhibit
         name.text = exhibit.title
         photo.image = exhibit.photo
         workTypeDataLabel.text = exhibit.classification
@@ -41,7 +45,7 @@ class ExhibitViewController: UIViewController {
 
     @IBAction func showDescription(_ sender: Any) {
         
-        let description = UIAlertController(title: "Description", message: exhibit?.label, preferredStyle: .actionSheet)
+        let description = UIAlertController(title: "Description", message: viewModel?.exhibit.label, preferredStyle: .actionSheet)
         description.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         self.present(description, animated: true, completion: nil)
     }

@@ -19,7 +19,6 @@ class GalleriesViewController: UICollectionViewController {
         DispatchQueue.main.async {
             guard let viewModel = self.viewModel else { return }
             viewModel.loadGalleries {
-                print("Completion")
                 self.collectionView.reloadData()
             }
         }
@@ -68,9 +67,8 @@ class GalleriesViewController: UICollectionViewController {
             guard let viewController = segue.destination as? ExhibitionTableViewController else {
                 fatalError("Unexpected destination")
             }
-            guard let galleryNumber = viewModel?.selectedGalleryNumber() else { return }
-            viewController.loadExhibits(fromGallery: galleryNumber)
-
+            let exhibitsViewModel = viewModel?.exhibitsViewModel()
+            viewController.viewModel = exhibitsViewModel
         } else {
             fatalError("Unknown Identifier")
         }

@@ -10,13 +10,10 @@ import UIKit
 class ExhibitionTableViewController: UITableViewController {
     
     //MARK: Properties
+    var viewModel: ExhibitionViewModelType?
     
-    var galleryNumber: Int = 0
-    var exhibits = [Exhibit]()
-    var networkManager = ExhibitionNetworkManager()
-    var imageDownloader = ImageDownloadManager()
     var spinner: UIActivityIndicatorView!
-    var currentPage = 1
+
     var fetchingMore = false
     var isLastPage = false
     
@@ -24,43 +21,44 @@ class ExhibitionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        createSpinner()
+
+        guard let viewModel = viewModel else { return }
+        title = viewModel.title
         
-        createSpinner()
-//        networkManager = NetworkExhibitionManager()
-//        imageDownloader = ImageDownloadManager()
+        viewModel.loadExhibits {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exhibits.count
+        return viewModel?.numberOfRows() ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "ExhibitTableViewCell"
+        guard let cellViewModel = viewModel?.cellViewModel(forIndexPath: indexPath) as? ExhibitionCellViewModelType  else {
+            return UITableViewCell()
+            
+        }
+        let cellIdentifier = cellViewModel.identifier
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ExhibitTableViewCell else {
             fatalError("cell is not Exhibit view cell")
         }
-        
-        let exhibit = exhibits[indexPath.row]
-        cell.updateView(with: exhibit)
-        
-        imageDownloader.downloadImage(fromUrl: exhibit.imageUrl, withIdentifier: exhibit.title) { image in
-            if indexPath.row > self.exhibits.count {
-                return
-            }
-            self.exhibits[indexPath.row].photo = image
-            cell.updateView(with: self.exhibits[indexPath.row])
-        }
+        cell.viewModel = cellViewModel
         
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel?.selectCell(toIndexPath: indexPath)
+        performSegue(withIdentifier: "showDetails", sender: nil)
+    }
+    
     //MARK: - UI initialization
     
     func createSpinner() {
@@ -74,38 +72,22 @@ class ExhibitionTableViewController: UITableViewController {
         spinner.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
     }
     
-    func loadExhibits(fromGallery gallery: Int) {
-        print("gallery number \(gallery)")
-        
-        let requestType = GalleryPageRequest(galleryNumber: gallery, pageNumber: currentPage)
-        title = "Gallery \(gallery)"
-        networkManager.load(request: requestType) { [weak self] (galleryData: GalleryData?) in
-            guard let self = self else {
-                return
-            }
-            guard let galleryData = galleryData else {
-                return
-            }
-            self.updateExhibits(fromGalleryData: galleryData)
-        }
-    }
-    
-    func updateExhibits(fromGalleryData data: GalleryData) {
-        self.exhibits.removeAll()
-        for record in data.records {
-            guard let newExhibit = Exhibit(record: record) else {
-                continue
-            }
-            exhibits.append(newExhibit)
-        }
-        if self.exhibits.isEmpty {
-            self.isLastPage = true
-        }
-        
-        self.tableView.reloadData()
-        self.spinner.stopAnimating()
-        self.fetchingMore = false
-    }
+//    func updateExhibits(fromGalleryData data: GalleryData) {
+//        self.exhibits.removeAll()
+//        for record in data.records {
+//            guard let newExhibit = Exhibit(record: record) else {
+//                continue
+//            }
+//            exhibits.append(newExhibit)
+//        }
+//        if self.exhibits.isEmpty {
+//            self.isLastPage = true
+//        }
+//
+//        self.tableView.reloadData()
+//        self.spinner.stopAnimating()
+//        self.fetchingMore = false
+//    }
     
     // MARK: - Scrolling
     
@@ -120,17 +102,13 @@ class ExhibitionTableViewController: UITableViewController {
 //        }
 //    }
     
-    func updateData() {
-        fetchingMore = true
-        spinner.startAnimating()
-        currentPage += 1
-//        loadExhibits(fromGallery: galleryNumber)
-    }
+//    func updateData() {
+//        fetchingMore = true
+//        spinner.startAnimating()
+//        currentPage += 1
+////        loadExhibits(fromGallery: galleryNumber)
+//    }
     
-    func clearData() {
-        currentPage = 0
-        exhibits.removeAll()
-    }
      // MARK: - Navigation
      
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -138,28 +116,21 @@ class ExhibitionTableViewController: UITableViewController {
         
         let identifier = segue.identifier ?? ""
         
-        if identifier == "Show details" {
-            guard let exhibitionViewController = segue.destination as? ExhibitViewController else {
+        if identifier == "showDetails" {
+            guard let exhibitionViewController = segue.destination as? DetailedViewController else {
                 fatalError("Unexpected destination") }
             
-            guard let selectedCell = sender as? ExhibitTableViewCell else {
-                fatalError("Unexpected sender") }
-            
-            guard let indexPath = tableView.indexPath(for: selectedCell) else {
-                fatalError("The selected cell is not being displayed by the table")
-            }
-            
-            let selectedExhibit = exhibits[indexPath.row]
-
-            exhibitionViewController.exhibit = selectedExhibit
+            guard let detailedViewModel = viewModel?.detailViewModel() else { return }
+            print(detailedViewModel)
+            exhibitionViewController.viewModel = detailedViewModel
         } else {
             fatalError("Unexpected segue identifier \(identifier)")
         }
      }
     
-    override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-        self.clearData()
-    }
+//    override func didMove(toParent parent: UIViewController?) {
+//        super.didMove(toParent: parent)
+//        self.clearData()
+//    }
 }
 

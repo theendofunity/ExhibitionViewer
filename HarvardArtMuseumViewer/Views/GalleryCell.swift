@@ -9,7 +9,7 @@ import UIKit
 
 class GalleryCell: UICollectionViewCell {
     
-    weak var viewModel: CollectionViewCellViewModelType? {
+    weak var viewModel: CollectionCellViewModelType? {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
             galleryTitleLabel.text = viewModel.cellTitle
