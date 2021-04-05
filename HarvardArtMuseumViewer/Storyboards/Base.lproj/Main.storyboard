@@ -234,6 +234,7 @@
                         <outlet property="objectNumberDataLabel" destination="XwP-KR-VSW" id="AKv-Hz-yIa"/>
                         <outlet property="peopleDataLabel" destination="gsa-Lb-ABq" id="hlp-tH-MH5"/>
                         <outlet property="photo" destination="r5l-UI-ydC" id="sa2-my-EG8"/>
+                        <outlet property="showDescription" destination="07w-y2-YRG" id="qwI-TW-TDC"/>
                         <outlet property="workTypeDataLabel" destination="XiQ-lI-K6t" id="fMG-07-mRp"/>
                     </connections>
                 </viewController>

@@ -19,6 +19,8 @@ class DetailedViewController: UIViewController {
     @IBOutlet weak var workTypeDataLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
+    @IBOutlet weak var showDescription: UIButton!
+    
     weak var viewModel: DetailedViewModelType? {
         didSet {
             self.updateInterface()
@@ -41,10 +43,13 @@ class DetailedViewController: UIViewController {
         objectNumberDataLabel.text = exhibit.objectNumber
         dateLabel.text = String(exhibit.date)
         peopleDataLabel.text = exhibit.authorsString
+        
+        if exhibit.label.isEmpty {
+            showDescription.isEnabled = false
+        }
     }
 
     @IBAction func showDescription(_ sender: Any) {
-        
         let description = UIAlertController(title: "Description", message: viewModel?.exhibit.label, preferredStyle: .actionSheet)
         description.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         self.present(description, animated: true, completion: nil)
