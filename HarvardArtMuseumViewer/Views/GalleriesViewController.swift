@@ -18,8 +18,8 @@ class GalleriesViewController: UICollectionViewController {
         
         DispatchQueue.main.async {
             guard let viewModel = self.viewModel else { return }
-            viewModel.loadGalleries {
-                self.collectionView.reloadData()
+            viewModel.loadGalleries { [weak self] in
+                self?.collectionView.reloadData()
             }
         }
     }

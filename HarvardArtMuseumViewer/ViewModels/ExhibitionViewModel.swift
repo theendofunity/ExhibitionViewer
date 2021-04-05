@@ -47,9 +47,9 @@ class ExhitionViewModel: ExhibitionViewModelType {
     
     func loadImage(forIndexPath indexPath: IndexPath, completion: @escaping () -> Void) {
         var exhibit = exhibits[indexPath.row]
-            networkManager.loadImage(fromUrl: exhibit.imageUrl, withIdentifier: exhibit.title) { photo in
+            networkManager.loadImage(fromUrl: exhibit.imageUrl, withIdentifier: exhibit.title) { [weak self] photo in
                 exhibit.photo = photo
-                self.exhibits[indexPath.row] = exhibit
+                self?.exhibits[indexPath.row] = exhibit
                 completion()
             }
     }

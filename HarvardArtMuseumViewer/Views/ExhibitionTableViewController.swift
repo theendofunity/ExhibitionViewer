@@ -26,9 +26,9 @@ class ExhibitionTableViewController: UITableViewController {
         guard let viewModel = viewModel else { return }
         title = viewModel.title
         
-        viewModel.loadExhibits {
+        viewModel.loadExhibits { [weak self] in
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
     }
@@ -50,8 +50,8 @@ class ExhibitionTableViewController: UITableViewController {
             fatalError("cell is not Exhibit view cell")
         }
         cell.viewModel = cellViewModel
-        viewModel?.loadImage(forIndexPath: indexPath) {
-            self.tableView.reloadRows(at: [indexPath], with: .none)
+        viewModel?.loadImage(forIndexPath: indexPath) { [weak self] in
+            self?.tableView.reloadRows(at: [indexPath], with: .none)
         }
         return cell
     }

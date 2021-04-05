@@ -34,8 +34,8 @@ class GalleriesViewModel: GalleriesViewModelType {
     
     func loadGalleries(completion: @escaping () -> Void) {
         guard let floor = floorNumber else { return }
-        networkManager.loadGalleries(forFloor: floor) { galleries in
-            self.galleries = galleries
+        networkManager.loadGalleries(forFloor: floor) { [weak self] galleries in
+            self?.galleries = galleries
             completion()
         }
     }
