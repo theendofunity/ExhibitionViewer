@@ -51,7 +51,6 @@
                                 <connections>
                                     <outlet property="name" destination="9hB-U3-3jg" id="kcb-oL-aRh"/>
                                     <outlet property="photo" destination="GWY-hk-GHH" id="9WT-LZ-u0P"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showDetails" id="D6w-7m-9hk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -61,6 +60,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Twr-xr-mAb"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showDetails" id="Ymk-Ma-3mI"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1K-Ig-5Dd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,7 +108,6 @@
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
                                     <outlet property="floorNumberLabel" destination="adG-fw-eQY" id="0ss-N8-Qou"/>
-                                    <segue destination="gL5-Rr-7Bn" kind="show" identifier="showGalleries" id="QCn-hL-Io5"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -116,6 +117,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="hcV-aw-0Ri"/>
+                    <connections>
+                        <segue destination="gL5-Rr-7Bn" kind="show" identifier="showGalleries" id="HjX-tx-8kI"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kdn-xe-2iO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -281,7 +285,6 @@
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
                                     <outlet property="galleryTitleLabel" destination="FWo-qJ-Xce" id="I9K-9y-7fe"/>
-                                    <segue destination="5Cx-i6-8lT" kind="show" identifier="showExhibits" id="hRk-U0-16C"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -291,6 +294,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="0Ss-CY-k2f"/>
+                    <connections>
+                        <segue destination="5Cx-i6-8lT" kind="show" identifier="showExhibits" id="a1W-uw-kaV"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FC-2Y-ex6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
