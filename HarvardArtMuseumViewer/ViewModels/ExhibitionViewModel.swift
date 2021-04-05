@@ -30,11 +30,6 @@ class ExhitionViewModel: ExhibitionViewModelType {
     
     func cellViewModel(forIndexPath indexPath: IndexPath) -> CollectionCellViewModelType? {
         let exhibit = exhibits[indexPath.row]
-//        DispatchQueue.main.async {
-//            self.networkManager.loadImage(fromUrl: exhibit.imageUrl, withIdentifier: exhibit.title) { image in
-//                self.exhibits[indexPath.row].photo = image
-//            }
-//        }
         
         return ExhibitionCellViewModel(exhibit: exhibit)
     }
@@ -50,12 +45,13 @@ class ExhitionViewModel: ExhibitionViewModelType {
         }
     }
     
-    func loadImage(completion: @escaping () -> Void) {
-        for var exhibit in exhibits {
+    func loadImage(forIndexPath indexPath: IndexPath, completion: @escaping () -> Void) {
+        var exhibit = exhibits[indexPath.row]
             networkManager.loadImage(fromUrl: exhibit.imageUrl, withIdentifier: exhibit.title) { photo in
                 exhibit.photo = photo
+                self.exhibits[indexPath.row] = exhibit
+                completion()
             }
-        }
     }
     
     func detailViewModel() -> DetailedViewModelType? {

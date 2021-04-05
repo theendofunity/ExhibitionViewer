@@ -18,6 +18,7 @@ class ExhibitTableViewCell: UITableViewCell {
         willSet(viewModel){
             guard let viewModel = viewModel else { return }
             self.name.text = viewModel.cellTitle
+            self.photo.image = viewModel.photo
         }
     }
     

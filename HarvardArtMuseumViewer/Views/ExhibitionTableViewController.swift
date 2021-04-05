@@ -50,7 +50,9 @@ class ExhibitionTableViewController: UITableViewController {
             fatalError("cell is not Exhibit view cell")
         }
         cell.viewModel = cellViewModel
-        
+        viewModel?.loadImage(forIndexPath: indexPath) {
+            self.tableView.reloadRows(at: [indexPath], with: .none)
+        }
         return cell
     }
 
