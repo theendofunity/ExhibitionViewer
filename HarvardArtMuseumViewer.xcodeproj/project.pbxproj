@@ -45,6 +45,7 @@
 		D823C1FE26161333000EAF85 /* ExhibitionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823C1FD26161333000EAF85 /* ExhibitionCellViewModel.swift */; };
 		D823C2062616153E000EAF85 /* DetailedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823C2052616153E000EAF85 /* DetailedViewModel.swift */; };
 		D823C2172616307E000EAF85 /* ExhibitionCellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823C2162616307E000EAF85 /* ExhibitionCellViewModelType.swift */; };
+		D8CC136F2620796500A5F15C /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC136E2620796500A5F15C /* LoadingCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		D823C1FD26161333000EAF85 /* ExhibitionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionCellViewModel.swift; sourceTree = "<group>"; };
 		D823C2052616153E000EAF85 /* DetailedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewModel.swift; sourceTree = "<group>"; };
 		D823C2162616307E000EAF85 /* ExhibitionCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionCellViewModelType.swift; sourceTree = "<group>"; };
+		D8CC136E2620796500A5F15C /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				840CCE632607B75100CAD9FA /* FloorCell.swift */,
 				840CCE6D2607BBB300CAD9FA /* GalleryCell.swift */,
 				847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */,
+				D8CC136E2620796500A5F15C /* LoadingCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				840CCE782608F19700CAD9FA /* Gallery.swift in Sources */,
 				840CCE642607B75100CAD9FA /* FloorCell.swift in Sources */,
 				D823C1F326161079000EAF85 /* DetailedViewModelType.swift in Sources */,
+				D8CC136F2620796500A5F15C /* LoadingCell.swift in Sources */,
 				847F067425E6C00000338B31 /* DetailedViewController.swift in Sources */,
 				840CCEBB2610D3C200CAD9FA /* CollectionViewModelType.swift in Sources */,
 				840CCEC32610D5EE00CAD9FA /* CollectionCellViewModelType.swift in Sources */,

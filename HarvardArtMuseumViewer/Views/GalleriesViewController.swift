@@ -12,8 +12,9 @@ class GalleriesViewController: UICollectionViewController {
     //MARK: - Properties
     var viewModel: GalleriesViewModelType?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         configurateLayout()
         
         DispatchQueue.main.async {
@@ -23,6 +24,18 @@ class GalleriesViewController: UICollectionViewController {
             }
         }
     }
+    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        configurateLayout()
+//        
+//        DispatchQueue.main.async {
+//            guard let viewModel = self.viewModel else { return }
+//            viewModel.loadGalleries { [weak self] in
+//                self?.collectionView.reloadData()
+//            }
+//        }
+//    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel?.numberOfRows() ?? 0

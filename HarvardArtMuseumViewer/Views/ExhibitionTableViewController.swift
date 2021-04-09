@@ -10,19 +10,16 @@ import UIKit
 class ExhibitionTableViewController: UITableViewController {
     
     //MARK: Properties
+    
     var viewModel: ExhibitionViewModelType?
     
-    var spinner: UIActivityIndicatorView!
-
     var fetchingMore = false
-    var isLastPage = false
     
     //MARK: Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        createSpinner()
-
+        
         guard let viewModel = viewModel else { return }
         title = viewModel.title
         
@@ -35,25 +32,50 @@ class ExhibitionTableViewController: UITableViewController {
     
     // MARK: - Table view data source
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.numberOfRows() ?? 0
+        if section == 0 {
+            return viewModel?.numberOfRows() ?? 0
+        } else if section == 1 {
+            guard let lastPage = viewModel?.isLastPage else { return 0}
+            if lastPage {
+                return 0
+            }
+            return 1
+        } else {
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cellViewModel = viewModel?.cellViewModel(forIndexPath: indexPath) as? ExhibitionCellViewModelType  else {
-            return UITableViewCell()
+        if (indexPath.section == 0)
+        {
+            guard let cellViewModel = viewModel?.cellViewModel(forIndexPath: indexPath) as? ExhibitionCellViewModelType  else {
+                return UITableViewCell()
+            }
+            let cellIdentifier = cellViewModel.identifier
             
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ExhibitTableViewCell else {
+                fatalError("cell is not Exhibit view cell")
+            }
+            cell.viewModel = cellViewModel
+            if (cellViewModel.photo == nil)
+            {
+                viewModel?.loadImage(forIndexPath: indexPath) { [weak self] in
+                    self?.tableView.reloadRows(at: [indexPath], with: .none)
+                }
+            }
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath) as? LoadingCell else {
+                fatalError("cell is not loading view cell")
+            }
+            cell.activityIndicator.startAnimating()
+            return cell
         }
-        let cellIdentifier = cellViewModel.identifier
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ExhibitTableViewCell else {
-            fatalError("cell is not Exhibit view cell")
-        }
-        cell.viewModel = cellViewModel
-        viewModel?.loadImage(forIndexPath: indexPath) { [weak self] in
-            self?.tableView.reloadRows(at: [indexPath], with: .none)
-        }
-        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -61,55 +83,34 @@ class ExhibitionTableViewController: UITableViewController {
         performSegue(withIdentifier: "showDetails", sender: nil)
     }
     
-    //MARK: - UI initialization
-    
-    func createSpinner() {
-        spinner = UIActivityIndicatorView(style: .large)
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.hidesWhenStopped = true
-        spinner.startAnimating()
-        tableView.addSubview(spinner)
-        
-        spinner.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
-        spinner.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
-    }
-    
-//    func updateExhibits(fromGalleryData data: GalleryData) {
-//        self.exhibits.removeAll()
-//        for record in data.records {
-//            guard let newExhibit = Exhibit(record: record) else {
-//                continue
-//            }
-//            exhibits.append(newExhibit)
-//        }
-//        if self.exhibits.isEmpty {
-//            self.isLastPage = true
-//        }
-//
-//        self.tableView.reloadData()
-//        self.spinner.stopAnimating()
-//        self.fetchingMore = false
-//    }
-    
     // MARK: - Scrolling
     
-//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offsetY = scrollView.contentOffset.y
-//        let contentHeigh = scrollView.contentSize.height
-//        
-//        if offsetY > contentHeigh - scrollView.frame.height {
-//            if !fetchingMore  && !isLastPage {
-//                updateData()
-//            }
-//        }
-//    }
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let maximumOffset = contentHeight - scrollView.frame.size.height * 4
+
+        if currentOffset > maximumOffset {
+            loadMore()
+        }
+    }
     
-//    func updateData() {
-//        fetchingMore = true
-//        spinner.startAnimating()
-//        currentPage += 1
-////        loadExhibits(fromGallery: galleryNumber)
-//    }
+    func loadMore() {
+        guard !fetchingMore else { return }
+        
+        fetchingMore = true
+        
+        DispatchQueue.global().async {
+            sleep(2)
+            
+            DispatchQueue.main.async {
+                self.viewModel?.loadNextPage {
+                    self.fetchingMore = false
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
     
      // MARK: - Navigation
      
@@ -129,10 +130,5 @@ class ExhibitionTableViewController: UITableViewController {
             fatalError("Unexpected segue identifier \(identifier)")
         }
      }
-    
-//    override func didMove(toParent parent: UIViewController?) {
-//        super.didMove(toParent: parent)
-//        self.clearData()
-//    }
 }
 

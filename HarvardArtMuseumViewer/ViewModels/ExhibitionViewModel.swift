@@ -8,9 +8,10 @@
 import Foundation
 
 class ExhitionViewModel: ExhibitionViewModelType {
-    
+    var isLastPage: Bool = false
     var galleryNumber: Int
     var currentPage: Int = 1
+    var totalPage: Int = 1
     var exhibits = [Exhibit]()
     var selectedCell: IndexPath?
     
@@ -39,8 +40,24 @@ class ExhitionViewModel: ExhibitionViewModelType {
     }
     
     func loadExhibits(completion: @escaping () -> Void) {
-        networkManager.loadExhibits(forGallery: galleryNumber, pageNumber: currentPage) { newExhibits in
-            self.exhibits = newExhibits
+        networkManager.loadExhibits(forGallery: galleryNumber, pageNumber: currentPage) { [weak self] newExhibits in
+            if newExhibits.isEmpty {
+                self?.isLastPage = true
+            } else {
+                self?.exhibits += newExhibits
+            }
+            
+            completion()
+        }
+    }
+    
+    func loadNextPage(completion: @escaping () -> Void) {
+        if isLastPage {
+            completion()
+            return
+        }
+        currentPage += 1
+        loadExhibits {
             completion()
         }
     }

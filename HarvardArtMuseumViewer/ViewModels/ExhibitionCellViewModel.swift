@@ -17,6 +17,7 @@ class ExhibitionCellViewModel: ExhibitionCellViewModelType {
     
     init(exhibit: Exhibit) {
         self.exhibit = exhibit
-        self.photo = exhibit.photo ?? UIImage(named: "Image placeholder")
+        self.photo = exhibit.photo
+//            ?? UIImage(named: "Image placeholder")
     }
 }

@@ -53,6 +53,28 @@
                                     <outlet property="photo" destination="GWY-hk-GHH" id="9WT-LZ-u0P"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" id="ggB-do-dYN" customClass="LoadingCell" customModule="HarvardArtMuseumViewer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="118" width="414" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ggB-do-dYN" id="Guo-db-nRg">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="dN8-EK-Kl9">
+                                            <rect key="frame" x="20" y="11" width="374" height="68"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="dN8-EK-Kl9" secondAttribute="trailing" id="2fZ-N9-Onz"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dN8-EK-Kl9" secondAttribute="bottom" id="Nbg-bS-HRS"/>
+                                        <constraint firstItem="dN8-EK-Kl9" firstAttribute="leading" secondItem="Guo-db-nRg" secondAttribute="leadingMargin" id="gBc-e2-ffV"/>
+                                        <constraint firstItem="dN8-EK-Kl9" firstAttribute="top" secondItem="Guo-db-nRg" secondAttribute="topMargin" id="yrh-bs-5A9"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="activityIndicator" destination="dN8-EK-Kl9" id="8aK-as-V4H"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="5Cx-i6-8lT" id="8Bc-k0-2Wm"/>
