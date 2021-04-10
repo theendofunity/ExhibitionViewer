@@ -8,38 +8,41 @@
 import UIKit
 
 class FloorsViewController: UICollectionViewController {
-
-    //MARK: - Properties
+    //MARK: Properties
     
-    let networkManager = NetworkExhibitionManager()
-    
-    let floors = [1, 2, 3, 4, 5]
-    
-    
+    var viewModel: FloorsViewModelType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        viewModel = FloorsViewModel()
         configurateLayout()
+        title = "Museum floors"
     }
 
-    // MARK: UICollectionViewDataSource
+    // MARK: -  UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return floors.count
+        return viewModel?.numberOfRows() ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let identifier = "FloorCell"
+        let cellViewModel = viewModel?.cellViewModel(forIndexPath: indexPath)
+        guard let identifier = cellViewModel?.identifier else { return UICollectionViewCell() }
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? FloorCell else {
             fatalError("Unknown cell")
         }
-        cell.floorNumber = indexPath.row + 1
+        cell.viewModel = cellViewModel
     
         return cell
     }
 
-
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel?.selectCell(toIndexPath: indexPath)
+        performSegue(withIdentifier: "showGalleries", sender: nil)
+    }
+    
+    //MARK: - UI Configuration
+    
     func configurateLayout() {
         let itemsAtRow: CGFloat = 2
         let inset: CGFloat = 20
@@ -54,44 +57,20 @@ class FloorsViewController: UICollectionViewController {
         let widthForItem = availableWidth / itemsAtRow
         layout.itemSize = CGSize(width: widthForItem, height: widthForItem)
     }
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
         if segue.identifier == "showGalleries" {
-            guard let cell  = sender as? FloorCell else {
-                fatalError("Unexpected sender")
-            }
             guard let viewController = segue.destination as? GalleriesViewController else {
                 fatalError("Unexpected destination")
             }
-
-            loadGalleries(forFloor: cell.floorNumber) { galleries in
-                viewController.update(with: galleries)
-            }
-
+            let galleriesViewModel = viewModel?.galleriesViewModel()
+            viewController.viewModel = galleriesViewModel
         } else {
             fatalError("Unknown Identifier")
-        }
-    }
-
-    func loadGalleries(forFloor floor: Int, withCompletion completion: @escaping ([Gallery]) -> Void) {
-        let request = FloorPageRequest(floorNumber: floor)
-
-        networkManager.load(request: request){(floorData: FloorData?) in
-
-            guard let floorData = floorData else {
-                return
-            }
-
-            var galleries = [Gallery]()
-            for record in floorData.records {
-                let gallery = Gallery(with: record)
-                galleries.append(gallery)
-            }
-            completion(galleries)
         }
     }
 }

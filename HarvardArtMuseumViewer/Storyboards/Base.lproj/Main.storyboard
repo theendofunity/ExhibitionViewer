@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExhibitTableViewCell" id="pra-bi-AGe" customClass="ExhibitTableViewCell" customModule="HarvardArtMuseumViewer" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExhibitCell" id="pra-bi-AGe" customClass="ExhibitTableViewCell" customModule="HarvardArtMuseumViewer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pra-bi-AGe" id="KSe-Jg-jLL">
@@ -51,7 +51,28 @@
                                 <connections>
                                     <outlet property="name" destination="9hB-U3-3jg" id="kcb-oL-aRh"/>
                                     <outlet property="photo" destination="GWY-hk-GHH" id="9WT-LZ-u0P"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="Show details" id="D6w-7m-9hk"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" id="ggB-do-dYN" customClass="LoadingCell" customModule="HarvardArtMuseumViewer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="118" width="414" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ggB-do-dYN" id="Guo-db-nRg">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="dN8-EK-Kl9">
+                                            <rect key="frame" x="20" y="11" width="374" height="68"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="dN8-EK-Kl9" secondAttribute="trailing" id="2fZ-N9-Onz"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dN8-EK-Kl9" secondAttribute="bottom" id="Nbg-bS-HRS"/>
+                                        <constraint firstItem="dN8-EK-Kl9" firstAttribute="leading" secondItem="Guo-db-nRg" secondAttribute="leadingMargin" id="gBc-e2-ffV"/>
+                                        <constraint firstItem="dN8-EK-Kl9" firstAttribute="top" secondItem="Guo-db-nRg" secondAttribute="topMargin" id="yrh-bs-5A9"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="activityIndicator" destination="dN8-EK-Kl9" id="8aK-as-V4H"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -61,6 +82,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Twr-xr-mAb"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showDetails" id="Ymk-Ma-3mI"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1K-Ig-5Dd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,7 +130,6 @@
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
                                     <outlet property="floorNumberLabel" destination="adG-fw-eQY" id="0ss-N8-Qou"/>
-                                    <segue destination="gL5-Rr-7Bn" kind="show" identifier="showGalleries" id="QCn-hL-Io5"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -116,15 +139,18 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="hcV-aw-0Ri"/>
+                    <connections>
+                        <segue destination="gL5-Rr-7Bn" kind="show" identifier="showGalleries" id="HjX-tx-8kI"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kdn-xe-2iO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-355.07246376811599" y="791.51785714285711"/>
         </scene>
-        <!--Exhibit View Controller-->
+        <!--Detailed View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ExhibitViewController" customModule="HarvardArtMuseumViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="DetailedViewController" customModule="HarvardArtMuseumViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,6 +260,7 @@
                         <outlet property="objectNumberDataLabel" destination="XwP-KR-VSW" id="AKv-Hz-yIa"/>
                         <outlet property="peopleDataLabel" destination="gsa-Lb-ABq" id="hlp-tH-MH5"/>
                         <outlet property="photo" destination="r5l-UI-ydC" id="sa2-my-EG8"/>
+                        <outlet property="showDescription" destination="07w-y2-YRG" id="qwI-TW-TDC"/>
                         <outlet property="workTypeDataLabel" destination="XiQ-lI-K6t" id="fMG-07-mRp"/>
                     </connections>
                 </viewController>
@@ -280,7 +307,6 @@
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
                                     <outlet property="galleryTitleLabel" destination="FWo-qJ-Xce" id="I9K-9y-7fe"/>
-                                    <segue destination="5Cx-i6-8lT" kind="show" identifier="showExhibits" id="hRk-U0-16C"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -290,6 +316,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="0Ss-CY-k2f"/>
+                    <connections>
+                        <segue destination="5Cx-i6-8lT" kind="show" identifier="showExhibits" id="a1W-uw-kaV"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FC-2Y-ex6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

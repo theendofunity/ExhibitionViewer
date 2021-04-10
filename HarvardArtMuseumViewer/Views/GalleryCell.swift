@@ -9,19 +9,18 @@ import UIKit
 
 class GalleryCell: UICollectionViewCell {
     
-    var galleryNumber = 0
-    var galleryName = "" {
-        didSet {
-            galleryTitleLabel.text = galleryName
+    weak var viewModel: CollectionCellViewModelType? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            galleryTitleLabel.text = viewModel.cellTitle
+            configurateCell()
         }
     }
-    
+
     @IBOutlet weak var galleryTitleLabel: UILabel!
     
-    func updateView(with gallery: Gallery) {
-        galleryName = gallery.name
-        galleryNumber = gallery.id
+    func configurateCell() {
+        backgroundColor = .blue
+        galleryTitleLabel.numberOfLines = 0
     }
-    
-    
 }
