@@ -26,8 +26,8 @@ class FloorsViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellViewModel = viewModel?.cellViewModel(forIndexPath: indexPath)
-        guard let identifier = cellViewModel?.identifier else { return UICollectionViewCell() }
+        guard let cellViewModel = viewModel?.cellViewModel(forIndexPath: indexPath) as? FloorCellViewModel else { return UICollectionViewCell() }
+        let identifier = cellViewModel.identifier
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? FloorCell else {
             fatalError("Unknown cell")
         }

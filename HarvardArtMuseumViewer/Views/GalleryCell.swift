@@ -18,9 +18,13 @@ class GalleryCell: UICollectionViewCell {
     }
 
     @IBOutlet weak var galleryTitleLabel: UILabel!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     func configurateCell() {
-        backgroundColor = .blue
         galleryTitleLabel.numberOfLines = 0
+        
+        backgroundImage.image = UIImage(named: "GalleryPlaceholder")
+        backgroundImage.alpha = 0.3
+        backgroundImage.contentMode = .scaleToFill
     }
 }

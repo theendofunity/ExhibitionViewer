@@ -9,7 +9,7 @@ import Foundation
 
 class FloorsViewModel: FloorsViewModelType {
     var selectedCell: IndexPath?
-    let floors = [1, 2, 3, 4, 5]
+    let floors = [1, 2, 3, 4]
     
     func numberOfRows() -> Int {
         return floors.count
