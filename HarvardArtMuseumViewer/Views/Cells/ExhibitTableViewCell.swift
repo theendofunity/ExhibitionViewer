@@ -21,5 +21,4 @@ class ExhibitTableViewCell: UITableViewCell {
             self.photo.image = viewModel.photo
         }
     }
-    
 }

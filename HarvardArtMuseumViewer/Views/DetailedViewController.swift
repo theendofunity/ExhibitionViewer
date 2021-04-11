@@ -7,52 +7,91 @@
 
 import UIKit
 
-class DetailedViewController: UIViewController {
+class DetailedViewController: UITableViewController {
 
-    //MARK: Properties
+    //MARK: - Cells
     
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var photo: UIImageView!
-    
-    @IBOutlet weak var peopleDataLabel: UILabel!
-    @IBOutlet weak var objectNumberDataLabel: UILabel!
-    @IBOutlet weak var workTypeDataLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    
-    @IBOutlet weak var showDescription: UIButton!
+    var cells = [UITableViewCell]()
     
     weak var viewModel: DetailedViewModelType? {
         didSet {
-            self.updateInterface()
+            self.tableView.reloadData()
         }
+    }
+
+    //MARK - Tableview
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return cells.count
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
-
-    func updateInterface() {
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section <= cells.count && indexPath.row == 0 {
+            return cells[indexPath.section]
+        }
+        return UITableViewCell()
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let headers = [nil, "Peoples", "Object number", "Work type", "Date", "Description"]
+        
+        if section >= headers.count {
+            return nil
+        }
+        return headers[section]
+    }
+    
+    override func loadView() {
+        super.loadView()
+        
+        tableView.allowsSelection = false
+        
         guard let viewModel = viewModel else { return }
         
-        loadViewIfNeeded()
-        
         let exhibit = viewModel.exhibit
-        name.text = exhibit.title
-        photo.image = exhibit.photo
-        workTypeDataLabel.text = exhibit.classification
-        objectNumberDataLabel.text = exhibit.objectNumber
-        dateLabel.text = String(exhibit.date)
-        peopleDataLabel.text = exhibit.authorsString
+        title = exhibit.title
         
-        if exhibit.label.isEmpty {
-            showDescription.isEnabled = false
-        }
-    }
-
-    @IBAction func showDescription(_ sender: Any) {
-        let description = UIAlertController(title: "Description", message: viewModel?.exhibit.label, preferredStyle: .actionSheet)
-        description.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-        self.present(description, animated: true, completion: nil)
+        let imageCell: UITableViewCell = UITableViewCell()
+        var imageContentConfiguration = imageCell.defaultContentConfiguration()
+        imageContentConfiguration.imageProperties.reservedLayoutSize = CGSize(width: 250, height: 250)
+        let image = exhibit.photo
+        imageContentConfiguration.image = image
+        imageCell.contentConfiguration = imageContentConfiguration
+        cells.append(imageCell)
+  
+        let peopleCell: UITableViewCell = UITableViewCell()
+        var peopleContentConfiguration = peopleCell.defaultContentConfiguration()
+        peopleContentConfiguration.text = exhibit.authorsString
+        peopleCell.contentConfiguration = peopleContentConfiguration
+        cells.append(peopleCell)
+        
+        let objectNumberCell: UITableViewCell = UITableViewCell()
+        var objectNumberContentConfiguration = objectNumberCell.defaultContentConfiguration()
+        objectNumberContentConfiguration.text = exhibit.objectNumber
+        objectNumberCell.contentConfiguration = objectNumberContentConfiguration
+        cells.append(objectNumberCell)
+        
+        let workTypeCell: UITableViewCell = UITableViewCell()
+        var workTypeContentConfiguration = workTypeCell.defaultContentConfiguration()
+        workTypeContentConfiguration.text = exhibit.classification
+        workTypeCell.contentConfiguration = workTypeContentConfiguration
+        cells.append(workTypeCell)
+        
+        let dateCell: UITableViewCell = UITableViewCell()
+        var dateContentConfiguration = dateCell.defaultContentConfiguration()
+        dateContentConfiguration.text = String(exhibit.date)
+        dateCell.contentConfiguration = dateContentConfiguration
+        cells.append(dateCell)
+        
+        let descriptionCell: UITableViewCell = UITableViewCell()
+        var descriptionContentConfiguration = descriptionCell.defaultContentConfiguration()
+        descriptionContentConfiguration.text = exhibit.label
+        descriptionCell.contentConfiguration = descriptionContentConfiguration
+        cells.append(descriptionCell)
     }
 }
 

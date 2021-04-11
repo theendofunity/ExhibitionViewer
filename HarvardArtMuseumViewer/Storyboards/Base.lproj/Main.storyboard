@@ -83,7 +83,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Twr-xr-mAb"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showDetails" id="Ymk-Ma-3mI"/>
+                        <segue destination="7Cu-rc-JOO" kind="show" identifier="showDetails" id="i6V-ft-6es"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1K-Ig-5Dd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -156,9 +156,38 @@
             <point key="canvasLocation" x="-355.07246376811599" y="791.51785714285711"/>
         </scene>
         <!--Detailed View Controller-->
+        <scene sceneID="1f7-3l-uba">
+            <objects>
+                <tableViewController id="7Cu-rc-JOO" customClass="DetailedViewController" customModule="HarvardArtMuseumViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="20c-T9-FBP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aPx-KW-QVI">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aPx-KW-QVI" id="R5I-aZ-Hk0">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7Cu-rc-JOO" id="xgF-X7-ii9"/>
+                            <outlet property="delegate" destination="7Cu-rc-JOO" id="Wle-vw-52K"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="vrg-OI-Eva"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HXc-tK-DP9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2182" y="793"/>
+        </scene>
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="DetailedViewController" customModule="HarvardArtMuseumViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -172,18 +201,15 @@
                                 </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Show discription"/>
-                                <connections>
-                                    <action selector="showDescription:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QiZ-DS-0XJ"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1J-D3-Tcq">
-                                <rect key="frame" x="4.5" y="108" width="405" height="0.0"/>
+                                <rect key="frame" x="4.5" y="64" width="405" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="7mQ-Xm-GTH">
-                                <rect key="frame" x="20" y="424" width="121.5" height="269"/>
+                                <rect key="frame" x="20" y="380" width="121.5" height="269"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3H-JX-hbc">
                                         <rect key="frame" x="0.0" y="0.0" width="56" height="20.5"/>
@@ -236,7 +262,7 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r5l-UI-ydC">
-                                <rect key="frame" x="20" y="128" width="374" height="256"/>
+                                <rect key="frame" x="20" y="84" width="374" height="256"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="256" id="Gem-bn-pfV"/>
                                     <constraint firstAttribute="width" constant="374" id="J8Y-Sw-DB8"/>
@@ -263,18 +289,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="rVG-Hs-mgv"/>
                     <connections>
-                        <outlet property="dateLabel" destination="w3f-za-vMl" id="j2V-ID-3fE"/>
                         <outlet property="name" destination="p1J-D3-Tcq" id="SAF-u1-CxE"/>
-                        <outlet property="objectNumberDataLabel" destination="XwP-KR-VSW" id="AKv-Hz-yIa"/>
-                        <outlet property="peopleDataLabel" destination="gsa-Lb-ABq" id="hlp-tH-MH5"/>
-                        <outlet property="photo" destination="r5l-UI-ydC" id="sa2-my-EG8"/>
-                        <outlet property="showDescription" destination="07w-y2-YRG" id="qwI-TW-TDC"/>
-                        <outlet property="workTypeDataLabel" destination="XiQ-lI-K6t" id="fMG-07-mRp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2243" y="792"/>
+            <point key="canvasLocation" x="2884" y="792"/>
         </scene>
         <!--Galleries View Controller-->
         <scene sceneID="JYm-KO-D90">
