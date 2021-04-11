@@ -19,7 +19,7 @@ class NetworkManager {
             
             var galleries = [Gallery]()
             for record in floorData.records {
-                let gallery = Gallery(with: record)
+                guard let gallery = Gallery(with: record) else { continue }
                 galleries.append(gallery)
             }
             completion(galleries)

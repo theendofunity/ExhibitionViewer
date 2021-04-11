@@ -8,21 +8,24 @@
 import Foundation
 
 class ExhitionViewModel: ExhibitionViewModelType {
-    var isLastPage: Bool = false
     var galleryNumber: Int
+    var galleryTitle: String
+    var isLastPage: Bool = false
+
     var currentPage: Int = 1
-    var totalPage: Int = 1
+//    var totalPage: Int = 1
     var exhibits = [Exhibit]()
     var selectedCell: IndexPath?
     
     var title: String {
-        return "Gallery \(galleryNumber)"
+        return galleryTitle
     }
     
     let networkManager = NetworkManager()
     
-    init(galleryNumber: Int) {
+    init(galleryNumber: Int, galleryTitle: String) {
         self.galleryNumber = galleryNumber
+        self.galleryTitle = galleryTitle
     }
     
     func numberOfRows() -> Int {

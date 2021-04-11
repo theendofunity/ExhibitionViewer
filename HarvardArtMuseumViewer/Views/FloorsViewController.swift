@@ -15,8 +15,8 @@ class FloorsViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = FloorsViewModel()
-        configurateLayout()
-        title = "Museum floors"
+        setupLayout()
+        title = "Museums floors"
     }
 
     // MARK: -  UICollectionViewDataSource
@@ -43,7 +43,7 @@ class FloorsViewController: UICollectionViewController {
     
     //MARK: - UI Configuration
     
-    func configurateLayout() {
+    func setupLayout() {
         let itemsAtRow: CGFloat = 2
         let inset: CGFloat = 20
 

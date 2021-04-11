@@ -143,8 +143,8 @@
 			children = (
 				847B78E825F5326600F0D81D /* GalleryData.swift */,
 				840CCE722608F06600CAD9FA /* FloorData.swift */,
-				847B78B225EBFBFC00F0D81D /* Exhibit.swift */,
 				840CCE772608F19700CAD9FA /* Gallery.swift */,
+				847B78B225EBFBFC00F0D81D /* Exhibit.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

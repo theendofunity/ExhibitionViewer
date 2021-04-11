@@ -11,7 +11,7 @@ class GalleriesCellViewModel: CollectionCellViewModelType {
     var gallery: Gallery
     
     var cellTitle: String {
-        return gallery.name
+        return gallery.theme ?? "No title"
     }
     
     var identifier: String = "GalleryCell"

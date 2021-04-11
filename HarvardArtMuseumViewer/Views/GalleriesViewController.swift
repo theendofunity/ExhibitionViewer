@@ -15,7 +15,8 @@ class GalleriesViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        configurateLayout()
+        title = viewModel?.title
+        setupLayout()
         
         DispatchQueue.main.async {
             guard let viewModel = self.viewModel else { return }
@@ -24,18 +25,6 @@ class GalleriesViewController: UICollectionViewController {
             }
         }
     }
-    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        configurateLayout()
-//        
-//        DispatchQueue.main.async {
-//            guard let viewModel = self.viewModel else { return }
-//            viewModel.loadGalleries { [weak self] in
-//                self?.collectionView.reloadData()
-//            }
-//        }
-//    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel?.numberOfRows() ?? 0
@@ -59,7 +48,7 @@ class GalleriesViewController: UICollectionViewController {
         performSegue(withIdentifier: "showExhibits", sender: nil)
     }
     
-    func configurateLayout() {
+    func setupLayout() {
         let itemsAtRow: CGFloat = 2
         let inset: CGFloat = 20
 

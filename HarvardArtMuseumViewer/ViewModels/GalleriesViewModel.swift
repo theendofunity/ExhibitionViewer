@@ -8,8 +8,10 @@
 import Foundation
 
 class GalleriesViewModel: GalleriesViewModelType {
-    
-    var floorNumber: Int?
+    var floorNumber: Int
+    var title: String {
+        return "Floor \(floorNumber)"
+    }
     var selectedCell: IndexPath?
     var galleries = [Gallery]()
     
@@ -33,8 +35,7 @@ class GalleriesViewModel: GalleriesViewModelType {
     }
     
     func loadGalleries(completion: @escaping () -> Void) {
-        guard let floor = floorNumber else { return }
-        networkManager.loadGalleries(forFloor: floor) { [weak self] galleries in
+        networkManager.loadGalleries(forFloor: floorNumber) { [weak self] galleries in
             self?.galleries = galleries
             completion()
         }
@@ -47,7 +48,7 @@ class GalleriesViewModel: GalleriesViewModelType {
     func exhibitsViewModel() -> ExhibitionViewModelType? {
         guard let selectedCell = selectedCell else { return nil }
         let gallery = galleries[selectedCell.item]
-        return ExhitionViewModel(galleryNumber: gallery.id)
+        return ExhitionViewModel(galleryNumber: gallery.id, galleryTitle: gallery.theme ?? "No title")
     }
 
 }

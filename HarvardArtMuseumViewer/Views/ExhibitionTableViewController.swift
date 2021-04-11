@@ -62,7 +62,7 @@ class ExhibitionTableViewController: UITableViewController {
                 fatalError("cell is not Exhibit view cell")
             }
             cell.viewModel = cellViewModel
-            if (cellViewModel.photo == nil)
+            if (cellViewModel.defaultImageUsed)
             {
                 viewModel?.loadImage(forIndexPath: indexPath) { [weak self] in
                     self?.tableView.reloadRows(at: [indexPath], with: .none)

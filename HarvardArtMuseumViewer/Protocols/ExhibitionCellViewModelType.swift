@@ -9,4 +9,5 @@ import UIKit
 
 protocol ExhibitionCellViewModelType: CollectionCellViewModelType {
     var photo: UIImage? { get }
+    var defaultImageUsed: Bool { get set }
 }

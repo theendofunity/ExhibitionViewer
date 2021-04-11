@@ -8,6 +8,7 @@
 import Foundation
 
 protocol GalleriesViewModelType: CollectionViewModelType {
+    var title: String { get }
     func loadGalleries(completion: @escaping () -> Void)
     func exhibitsViewModel() -> ExhibitionViewModelType?
 }

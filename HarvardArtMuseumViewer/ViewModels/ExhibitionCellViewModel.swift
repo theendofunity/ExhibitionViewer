@@ -8,6 +8,8 @@
 import UIKit
 
 class ExhibitionCellViewModel: ExhibitionCellViewModelType {
+    var defaultImageUsed: Bool
+    
     var photo: UIImage?
     var identifier = "ExhibitCell"
     var exhibit: Exhibit
@@ -17,7 +19,12 @@ class ExhibitionCellViewModel: ExhibitionCellViewModelType {
     
     init(exhibit: Exhibit) {
         self.exhibit = exhibit
-        self.photo = exhibit.photo
-//            ?? UIImage(named: "Image placeholder")
+        if exhibit.photo == nil {
+            defaultImageUsed = true
+            self.photo = UIImage(named: "Image placeholder")
+        } else {
+            defaultImageUsed = false
+            self.photo = exhibit.photo
+        }
     }
 }

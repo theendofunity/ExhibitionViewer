@@ -14,9 +14,11 @@ struct FloorData: Decodable {
 struct FloorRecord: Decodable {
     let galleryId: Int
     let name: String
+    let theme: String?
     
     enum CodingKeys: String, CodingKey {
         case galleryId = "galleryid"
         case name
+        case theme 
     }
 }
