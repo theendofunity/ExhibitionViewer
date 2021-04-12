@@ -19,7 +19,20 @@ class DetailedViewController: UITableViewController {
         }
     }
 
-    //MARK - Tableview
+    // MARK: - Initializer
+    
+    init(viewModel: DetailedViewModelType) {
+        super.init(style: .plain)
+        self.viewModel = viewModel
+        loadViewIfNeeded()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // MARK: - Tableview
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return cells.count

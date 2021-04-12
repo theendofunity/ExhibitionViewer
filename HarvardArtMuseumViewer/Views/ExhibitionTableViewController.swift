@@ -80,7 +80,12 @@ class ExhibitionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel?.selectCell(toIndexPath: indexPath)
-        performSegue(withIdentifier: "showDetails", sender: nil)
+        guard let detailedViewModel = viewModel?.detailViewModel() else { return }
+        
+        let detailedViewController = DetailedViewController(viewModel: detailedViewModel)
+        detailedViewController.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(detailedViewController, animated: true)
+//        present(detailedViewController, animated: true)
     }
     
     // MARK: - Scrolling
@@ -114,21 +119,20 @@ class ExhibitionTableViewController: UITableViewController {
     
      // MARK: - Navigation
      
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        let identifier = segue.identifier ?? ""
-        
-        if identifier == "showDetails" {
-            guard let exhibitionViewController = segue.destination as? DetailedViewController else {
-                fatalError("Unexpected destination") }
-            
-            guard let detailedViewModel = viewModel?.detailViewModel() else { return }
-            print(detailedViewModel)
-            exhibitionViewController.viewModel = detailedViewModel
-        } else {
-            fatalError("Unexpected segue identifier \(identifier)")
-        }
-     }
+//     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: sender)
+//
+//        let identifier = segue.identifier ?? ""
+//
+//        if identifier == "showDetails" {
+//            guard let exhibitionViewController = segue.destination as? DetailedViewController else {
+//                fatalError("Unexpected destination") }
+//
+//            guard let detailedViewModel = viewModel?.detailViewModel() else { return }
+//            exhibitionViewController.viewModel = detailedViewModel
+//        } else {
+//            fatalError("Unexpected segue identifier \(identifier)")
+//        }
+//     }
 }
 
