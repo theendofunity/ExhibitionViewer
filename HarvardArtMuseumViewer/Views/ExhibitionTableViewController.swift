@@ -14,6 +14,18 @@ class ExhibitionTableViewController: UITableViewController {
     var viewModel: ExhibitionViewModelType?
     var fetchingMore = false
     
+    
+    //MARK - Initializer
+    init(viewModel: ExhibitionViewModelType) {
+        super.init(style: .plain)
+        self.viewModel = viewModel
+        loadViewIfNeeded()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: Functions
     
     override func viewDidLoad() {
@@ -87,7 +99,6 @@ class ExhibitionTableViewController: UITableViewController {
         let detailedViewController = DetailedViewController(viewModel: detailedViewModel)
         detailedViewController.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(detailedViewController, animated: true)
-//        present(detailedViewController, animated: true)
     }
     
     // MARK: - Scrolling
@@ -118,23 +129,5 @@ class ExhibitionTableViewController: UITableViewController {
             }
         }
     }
-    
-     // MARK: - Navigation
-     
-//     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        super.prepare(for: segue, sender: sender)
-//
-//        let identifier = segue.identifier ?? ""
-//
-//        if identifier == "showDetails" {
-//            guard let exhibitionViewController = segue.destination as? DetailedViewController else {
-//                fatalError("Unexpected destination") }
-//
-//            guard let detailedViewModel = viewModel?.detailViewModel() else { return }
-//            exhibitionViewController.viewModel = detailedViewModel
-//        } else {
-//            fatalError("Unexpected segue identifier \(identifier)")
-//        }
-//     }
 }
 

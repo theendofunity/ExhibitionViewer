@@ -45,7 +45,9 @@ class GalleriesViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel?.selectCell(toIndexPath: indexPath)
         
-        performSegue(withIdentifier: "showExhibits", sender: nil)
+        guard let exhibitsViewModel = viewModel?.exhibitsViewModel() else { return }
+        let exhibitionViewController = ExhibitionTableViewController(viewModel: exhibitsViewModel)
+        self.navigationController?.pushViewController(exhibitionViewController, animated: true)
     }
     
     func setupLayout() {
@@ -63,16 +65,16 @@ class GalleriesViewController: UICollectionViewController {
         layout.itemSize = CGSize(width: widthForItem, height: widthForItem)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        if segue.identifier == "showExhibits" {
-            guard let viewController = segue.destination as? ExhibitionTableViewController else {
-                fatalError("Unexpected destination")
-            }
-            let exhibitsViewModel = viewModel?.exhibitsViewModel()
-            viewController.viewModel = exhibitsViewModel
-        } else {
-            fatalError("Unknown Identifier")
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: sender)
+//        if segue.identifier == "showExhibits" {
+//            guard let viewController = segue.destination as? ExhibitionTableViewController else {
+//                fatalError("Unexpected destination")
+//            }
+//            let exhibitsViewModel = viewModel?.exhibitsViewModel()
+//            viewController.viewModel = exhibitsViewModel
+//        } else {
+//            fatalError("Unknown Identifier")
+//        }
+//    }
 }
