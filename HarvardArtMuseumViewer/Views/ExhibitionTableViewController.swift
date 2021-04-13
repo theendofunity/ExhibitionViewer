@@ -12,7 +12,6 @@ class ExhibitionTableViewController: UITableViewController {
     //MARK: Properties
     
     var viewModel: ExhibitionViewModelType?
-    
     var fetchingMore = false
     
     //MARK: Functions
@@ -22,6 +21,9 @@ class ExhibitionTableViewController: UITableViewController {
         
         guard let viewModel = viewModel else { return }
         title = viewModel.title
+        
+        tableView.register(ExhibitTableViewCell.self, forCellReuseIdentifier: ExhibitTableViewCell.cellIdentifier)
+        tableView.register(LoadingCell.self, forCellReuseIdentifier: LoadingCell.cellIdentifier)
         
         viewModel.loadExhibits { [weak self] in
             DispatchQueue.main.async {
@@ -56,7 +58,7 @@ class ExhibitionTableViewController: UITableViewController {
             guard let cellViewModel = viewModel?.cellViewModel(forIndexPath: indexPath) as? ExhibitionCellViewModelType  else {
                 return UITableViewCell()
             }
-            let cellIdentifier = cellViewModel.identifier
+            let cellIdentifier = ExhibitTableViewCell.cellIdentifier
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ExhibitTableViewCell else {
                 fatalError("cell is not Exhibit view cell")
@@ -70,7 +72,7 @@ class ExhibitionTableViewController: UITableViewController {
             }
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath) as? LoadingCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: LoadingCell.cellIdentifier, for: indexPath) as? LoadingCell else {
                 fatalError("cell is not loading view cell")
             }
             cell.activityIndicator.startAnimating()
