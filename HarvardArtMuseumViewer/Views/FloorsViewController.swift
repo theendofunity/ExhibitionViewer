@@ -17,6 +17,8 @@ class FloorsViewController: UICollectionViewController {
         viewModel = FloorsViewModel()
         setupLayout()
         title = "Museums floors"
+        
+        collectionView.register(FloorCell.self, forCellWithReuseIdentifier: FloorCell.cellIdentifier)
     }
 
     // MARK: -  UICollectionViewDataSource
@@ -27,7 +29,7 @@ class FloorsViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cellViewModel = viewModel?.cellViewModel(forIndexPath: indexPath) as? FloorCellViewModel else { return UICollectionViewCell() }
-        let identifier = cellViewModel.identifier
+        let identifier = FloorCell.cellIdentifier
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? FloorCell else {
             fatalError("Unknown cell")
         }

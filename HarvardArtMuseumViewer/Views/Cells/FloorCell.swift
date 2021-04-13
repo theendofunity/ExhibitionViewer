@@ -8,9 +8,10 @@
 import UIKit
 
 class FloorCell: UICollectionViewCell {
+    static let cellIdentifier = "FloorCell"
     
-    @IBOutlet weak var floorNumberLabel: UILabel!
-    @IBOutlet weak var backgroundImage: UIImageView!
+    let floorNumberLabel: UILabel = UILabel()
+    let backgroundImage: UIImageView = UIImageView()
     
     var viewModel: FloorCellViewModel? {
         willSet(viewModel) {
@@ -20,12 +21,38 @@ class FloorCell: UICollectionViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        setupImageView()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupLayout()
     }
     
-    func setupImageView() {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupLayout() {
+        floorNumberLabel.textAlignment = .center
+        floorNumberLabel.numberOfLines = 0
+        
         backgroundImage.alpha = 0.3
         backgroundImage.contentMode = .scaleToFill
+        
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        floorNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        contentView.addSubview(backgroundImage)
+        contentView.addSubview(floorNumberLabel)
+        
+        NSLayoutConstraint.activate([
+            floorNumberLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            floorNumberLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            floorNumberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            floorNumberLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+
+            backgroundImage.topAnchor.constraint(equalTo: contentView.topAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
     }
 }
