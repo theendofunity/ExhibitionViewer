@@ -12,13 +12,23 @@ class GalleriesViewController: UICollectionViewController {
     //MARK: - Properties
     var viewModel: GalleriesViewModelType?
     
+    init(viewModel: GalleriesViewModelType) {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        super.init(collectionViewLayout: layout)
+        self.viewModel = viewModel
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setupLayout()
         collectionView.register(GalleryCell.self, forCellWithReuseIdentifier: GalleryCell.cellIdentifier)
         
         title = viewModel?.title
-        setupLayout()
         
         DispatchQueue.main.async {
             guard let viewModel = self.viewModel else { return }
@@ -52,6 +62,7 @@ class GalleriesViewController: UICollectionViewController {
     }
     
     func setupLayout() {
+        collectionView.backgroundColor = .systemGray
         let itemsAtRow: CGFloat = 2
         let inset: CGFloat = 20
 
@@ -65,17 +76,4 @@ class GalleriesViewController: UICollectionViewController {
         let widthForItem = availableWidth / itemsAtRow
         layout.itemSize = CGSize(width: widthForItem, height: widthForItem)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        super.prepare(for: segue, sender: sender)
-//        if segue.identifier == "showExhibits" {
-//            guard let viewController = segue.destination as? ExhibitionTableViewController else {
-//                fatalError("Unexpected destination")
-//            }
-//            let exhibitsViewModel = viewModel?.exhibitsViewModel()
-//            viewController.viewModel = exhibitsViewModel
-//        } else {
-//            fatalError("Unknown Identifier")
-//        }
-//    }
 }

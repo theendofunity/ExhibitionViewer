@@ -33,7 +33,6 @@
 		847F067025E6C00000338B31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F066F25E6C00000338B31 /* AppDelegate.swift */; };
 		847F067225E6C00000338B31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F067125E6C00000338B31 /* SceneDelegate.swift */; };
 		847F067425E6C00000338B31 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F067325E6C00000338B31 /* DetailedViewController.swift */; };
-		847F067725E6C00000338B31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847F067525E6C00000338B31 /* Main.storyboard */; };
 		847F067925E6C01500338B31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847F067825E6C01500338B31 /* Assets.xcassets */; };
 		847F067C25E6C01500338B31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847F067A25E6C01500338B31 /* LaunchScreen.storyboard */; };
 		847F068725E6C01600338B31 /* HarvardArtMuseumViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F068625E6C01600338B31 /* HarvardArtMuseumViewerTests.swift */; };
@@ -92,7 +91,6 @@
 		847F066F25E6C00000338B31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		847F067125E6C00000338B31 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		847F067325E6C00000338B31 /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
-		847F067625E6C00000338B31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		847F067825E6C01500338B31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		847F067B25E6C01500338B31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		847F067D25E6C01500338B31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 		840CCE35260100BF00CAD9FA /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				847F067525E6C00000338B31 /* Main.storyboard */,
 				847F067A25E6C01500338B31 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -395,7 +392,6 @@
 			files = (
 				847F067C25E6C01500338B31 /* LaunchScreen.storyboard in Resources */,
 				847F067925E6C01500338B31 /* Assets.xcassets in Resources */,
-				847F067725E6C00000338B31 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,14 +484,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		847F067525E6C00000338B31 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				847F067625E6C00000338B31 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		847F067A25E6C01500338B31 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

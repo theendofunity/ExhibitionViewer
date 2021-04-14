@@ -10,10 +10,22 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    var  window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        
+//        let navigationController = UINavigationController()
+//        
+//        let floorsViewModel = FloorsViewModel()
+//        let floorsViewController = FloorsViewController(viewModel: floorsViewModel)
+//        navigationController.pushViewController(floorsViewController, animated: true)
+//        
+//        window?.rootViewController = navigationController
+//
+//        window?.backgroundColor = .lightGray
+//        window?.makeKeyAndVisible()
+        
         return true
     }
 
