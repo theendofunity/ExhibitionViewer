@@ -31,10 +31,11 @@ class GalleryCell: UICollectionViewCell {
     
     func setupLayout() {
         galleryTitleLabel.textAlignment = .center
+        galleryTitleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         galleryTitleLabel.numberOfLines = 0
         
         backgroundImage.image = UIImage(named: "GalleryPlaceholder")
-        backgroundImage.alpha = 0.3
+        backgroundImage.alpha = 0.7
         backgroundImage.contentMode = .scaleToFill
         
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false

@@ -32,9 +32,11 @@ class FloorCell: UICollectionViewCell {
     
     func setupLayout() {
         floorNumberLabel.textAlignment = .center
+        floorNumberLabel.font = UIFont.boldSystemFont(ofSize: 20)
+    
         floorNumberLabel.numberOfLines = 0
         
-        backgroundImage.alpha = 0.3
+        backgroundImage.alpha = 0.7
         backgroundImage.contentMode = .scaleToFill
         
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false

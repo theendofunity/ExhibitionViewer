@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController(rootViewController: floorsViewController)
         window?.rootViewController = navigationController
 
-        window?.backgroundColor = .lightGray
+//        window?.backgroundColor = .lightGray
         window?.makeKeyAndVisible()
     }
 

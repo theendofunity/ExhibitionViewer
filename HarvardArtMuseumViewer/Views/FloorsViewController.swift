@@ -58,7 +58,7 @@ class FloorsViewController: UICollectionViewController {
     //MARK: - UI Configuration
     
     func setupLayout() {
-        collectionView.backgroundColor = .lightGray
+        collectionView.backgroundColor = .white
         let itemsAtRow: CGFloat = 2
         let inset: CGFloat = 20
 
