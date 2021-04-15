@@ -13,7 +13,6 @@ class ExhitionViewModel: ExhibitionViewModelType {
     var isLastPage: Bool = false
 
     var currentPage: Int = 1
-//    var totalPage: Int = 1
     var exhibits = [Exhibit]()
     var selectedCell: IndexPath?
     

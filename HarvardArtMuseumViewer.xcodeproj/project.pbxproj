@@ -37,6 +37,7 @@
 		847F067C25E6C01500338B31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847F067A25E6C01500338B31 /* LaunchScreen.storyboard */; };
 		847F068725E6C01600338B31 /* HarvardArtMuseumViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F068625E6C01600338B31 /* HarvardArtMuseumViewerTests.swift */; };
 		847F069225E6C01600338B31 /* HarvardArtMuseumViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F069125E6C01600338B31 /* HarvardArtMuseumViewerUITests.swift */; };
+		D819A56E2628A4CE006659F2 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819A56D2628A4CE006659F2 /* ImageCell.swift */; };
 		D823C1DE26160DBF000EAF85 /* FlorsViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823C1DD26160DBF000EAF85 /* FlorsViewModelType.swift */; };
 		D823C1E626160F0A000EAF85 /* ExhibitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823C1E526160F0A000EAF85 /* ExhibitionViewModel.swift */; };
 		D823C1EE26160FC4000EAF85 /* ExhibitionViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823C1ED26160FC4000EAF85 /* ExhibitionViewModelType.swift */; };
@@ -100,6 +101,7 @@
 		847F068D25E6C01600338B31 /* HarvardArtMuseumViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HarvardArtMuseumViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		847F069125E6C01600338B31 /* HarvardArtMuseumViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvardArtMuseumViewerUITests.swift; sourceTree = "<group>"; };
 		847F069325E6C01600338B31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D819A56D2628A4CE006659F2 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		D823C1DD26160DBF000EAF85 /* FlorsViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlorsViewModelType.swift; sourceTree = "<group>"; };
 		D823C1E526160F0A000EAF85 /* ExhibitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionViewModel.swift; sourceTree = "<group>"; };
 		D823C1ED26160FC4000EAF85 /* ExhibitionViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionViewModelType.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				840CCE6D2607BBB300CAD9FA /* GalleryCell.swift */,
 				847B78D925ED6EA600F0D81D /* ExhibitTableViewCell.swift */,
 				D8CC136E2620796500A5F15C /* LoadingCell.swift */,
+				D819A56D2628A4CE006659F2 /* ImageCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				847F067025E6C00000338B31 /* AppDelegate.swift in Sources */,
 				D823C1FE26161333000EAF85 /* ExhibitionCellViewModel.swift in Sources */,
 				847B78B325EBFBFC00F0D81D /* Exhibit.swift in Sources */,
+				D819A56E2628A4CE006659F2 /* ImageCell.swift in Sources */,
 				D823C1E626160F0A000EAF85 /* ExhibitionViewModel.swift in Sources */,
 				D823C2172616307E000EAF85 /* ExhibitionCellViewModelType.swift in Sources */,
 				847B78DF25F51E0E00F0D81D /* ApiKey.swift in Sources */,

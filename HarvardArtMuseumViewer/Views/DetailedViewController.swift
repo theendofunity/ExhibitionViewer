@@ -11,10 +11,12 @@ class DetailedViewController: UITableViewController {
 
     //MARK: - Cells
     
+    let imageCell = ImageCell()
     var cells = [UITableViewCell]()
     
     weak var viewModel: DetailedViewModelType? {
         didSet {
+            updatePhoto()
             self.tableView.reloadData()
         }
     }
@@ -67,20 +69,8 @@ class DetailedViewController: UITableViewController {
         
         let exhibit = viewModel.exhibit
         title = exhibit.title
-        
-        let imageCell: UITableViewCell = UITableViewCell()
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleToFill
-        imageView.image = exhibit.photo
-        imageCell.addSubview(imageView)
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: imageCell.topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: imageCell.bottomAnchor),
-            imageView.leftAnchor.constraint(equalTo: imageCell.leftAnchor),
-            imageView.rightAnchor.constraint(equalTo: imageCell.rightAnchor),
-            imageCell.heightAnchor.constraint(equalToConstant: 250)
-        ])
+
+        imageCell.changePhoto(newPhoto: exhibit.photo)
         cells.append(imageCell)
   
         let peopleCell: UITableViewCell = UITableViewCell()
@@ -113,5 +103,12 @@ class DetailedViewController: UITableViewController {
         descriptionCell.contentConfiguration = descriptionContentConfiguration
         cells.append(descriptionCell)
     }
+    
+    private func updatePhoto() {
+        guard let newPhoto = viewModel?.exhibit.photo else { return }
+        imageCell.changePhoto(newPhoto: newPhoto)
+        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+    }
 }
+
 

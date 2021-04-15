@@ -54,7 +54,7 @@ class ExhibitionTableViewController: UITableViewController {
         if section == 0 {
             return viewModel?.numberOfRows() ?? 0
         } else if section == 1 {
-            guard let lastPage = viewModel?.isLastPage else { return 0}
+            guard let lastPage = viewModel?.isLastPage else { return 0 }
             if lastPage {
                 return 0
             }
@@ -84,6 +84,9 @@ class ExhibitionTableViewController: UITableViewController {
             {
                 viewModel?.loadImage(forIndexPath: indexPath) { [weak self] in
                     self?.tableView.reloadRows(at: [indexPath], with: .none)
+                    if indexPath == self?.viewModel?.selectedCell {
+                        self?.updateDetailedView()
+                    }
                 }
             }
             return cell
@@ -103,6 +106,12 @@ class ExhibitionTableViewController: UITableViewController {
         let detailedViewController = DetailedViewController(viewModel: detailedViewModel)
         detailedViewController.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(detailedViewController, animated: true)
+    }
+    
+    func updateDetailedView() {
+        guard let currentViewController = navigationController?.visibleViewController as? DetailedViewController else { return }
+        guard let detailedViewModel = viewModel?.detailViewModel() else { return }
+        currentViewController.viewModel = detailedViewModel
     }
     
     // MARK: - Scrolling
