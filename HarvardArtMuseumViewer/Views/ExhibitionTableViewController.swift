@@ -12,8 +12,19 @@ class ExhibitionTableViewController: UITableViewController {
     //MARK: Properties
     
     var viewModel: ExhibitionViewModelType?
-    
     var fetchingMore = false
+    
+    
+    //MARK - Initializer
+    init(viewModel: ExhibitionViewModelType) {
+        super.init(style: .plain)
+        self.viewModel = viewModel
+        loadViewIfNeeded()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: Functions
     
@@ -22,6 +33,9 @@ class ExhibitionTableViewController: UITableViewController {
         
         guard let viewModel = viewModel else { return }
         title = viewModel.title
+        
+        tableView.register(ExhibitTableViewCell.self, forCellReuseIdentifier: ExhibitTableViewCell.cellIdentifier)
+        tableView.register(LoadingCell.self, forCellReuseIdentifier: LoadingCell.cellIdentifier)
         
         viewModel.loadExhibits { [weak self] in
             DispatchQueue.main.async {
@@ -50,13 +64,17 @@ class ExhibitionTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0)
         {
             guard let cellViewModel = viewModel?.cellViewModel(forIndexPath: indexPath) as? ExhibitionCellViewModelType  else {
                 return UITableViewCell()
             }
-            let cellIdentifier = cellViewModel.identifier
+            let cellIdentifier = ExhibitTableViewCell.cellIdentifier
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ExhibitTableViewCell else {
                 fatalError("cell is not Exhibit view cell")
@@ -70,7 +88,7 @@ class ExhibitionTableViewController: UITableViewController {
             }
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath) as? LoadingCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: LoadingCell.cellIdentifier, for: indexPath) as? LoadingCell else {
                 fatalError("cell is not loading view cell")
             }
             cell.activityIndicator.startAnimating()
@@ -80,7 +98,11 @@ class ExhibitionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel?.selectCell(toIndexPath: indexPath)
-        performSegue(withIdentifier: "showDetails", sender: nil)
+        guard let detailedViewModel = viewModel?.detailViewModel() else { return }
+        
+        let detailedViewController = DetailedViewController(viewModel: detailedViewModel)
+        detailedViewController.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(detailedViewController, animated: true)
     }
     
     // MARK: - Scrolling
@@ -111,24 +133,5 @@ class ExhibitionTableViewController: UITableViewController {
             }
         }
     }
-    
-     // MARK: - Navigation
-     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        let identifier = segue.identifier ?? ""
-        
-        if identifier == "showDetails" {
-            guard let exhibitionViewController = segue.destination as? DetailedViewController else {
-                fatalError("Unexpected destination") }
-            
-            guard let detailedViewModel = viewModel?.detailViewModel() else { return }
-            print(detailedViewModel)
-            exhibitionViewController.viewModel = detailedViewModel
-        } else {
-            fatalError("Unexpected segue identifier \(identifier)")
-        }
-     }
 }
 
