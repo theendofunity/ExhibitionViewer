@@ -69,11 +69,18 @@ class DetailedViewController: UITableViewController {
         title = exhibit.title
         
         let imageCell: UITableViewCell = UITableViewCell()
-        var imageContentConfiguration = imageCell.defaultContentConfiguration()
-        imageContentConfiguration.imageProperties.reservedLayoutSize = CGSize(width: 250, height: 250)
-        let image = exhibit.photo
-        imageContentConfiguration.image = image
-        imageCell.contentConfiguration = imageContentConfiguration
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleToFill
+        imageView.image = exhibit.photo
+        imageCell.addSubview(imageView)
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: imageCell.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: imageCell.bottomAnchor),
+            imageView.leftAnchor.constraint(equalTo: imageCell.leftAnchor),
+            imageView.rightAnchor.constraint(equalTo: imageCell.rightAnchor),
+            imageCell.heightAnchor.constraint(equalToConstant: 250)
+        ])
         cells.append(imageCell)
   
         let peopleCell: UITableViewCell = UITableViewCell()
