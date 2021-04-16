@@ -11,6 +11,7 @@ class GalleriesViewController: UICollectionViewController {
 
     //MARK: - Properties
     var viewModel: GalleriesViewModelType?
+    let spinner = UIActivityIndicatorView()
     
     init(viewModel: GalleriesViewModelType) {
         let layout = UICollectionViewFlowLayout()
@@ -34,6 +35,7 @@ class GalleriesViewController: UICollectionViewController {
             guard let viewModel = self.viewModel else { return }
             viewModel.loadGalleries { [weak self] in
                 self?.collectionView.reloadData()
+                self?.spinner.stopAnimating()
             }
         }
     }
@@ -75,5 +77,12 @@ class GalleriesViewController: UICollectionViewController {
         let availableWidth = collectionView.frame.width - paddingWidth
         let widthForItem = availableWidth / itemsAtRow
         layout.itemSize = CGSize(width: widthForItem, height: widthForItem)
+        
+        spinner.style = .large
+        spinner.hidesWhenStopped = true
+        spinner.center = view.center
+        view.addSubview(spinner)
+        
+        spinner.startAnimating()
     }
 }
