@@ -119,7 +119,7 @@ class ExhibitionTableViewController: UITableViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentOffset = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
-        let maximumOffset = contentHeight - scrollView.frame.size.height * 4
+        let maximumOffset = contentHeight - scrollView.frame.size.height
 
         if currentOffset > maximumOffset {
             loadMore()
@@ -127,20 +127,27 @@ class ExhibitionTableViewController: UITableViewController {
     }
     
     func loadMore() {
-        guard !fetchingMore else { return }
+        if viewModel!.isLastPage {
+            tableView.deleteSections(IndexSet(integer: 1), with: .automatic)
+            return
+        }
+        if fetchingMore { return }
         
         fetchingMore = true
         
-        DispatchQueue.global().async {
-            sleep(2)
-            
+        self.viewModel?.loadNextPage { [weak self] in
             DispatchQueue.main.async {
-                self.viewModel?.loadNextPage {
-                    self.fetchingMore = false
-                    self.tableView.reloadData()
-                }
+                self?.fetchingMore = false
+                self?.tableView.reloadData()
             }
         }
+    }
+    
+    private func showAlert() {
+        let alertViewController = UIAlertController(title: "Error", message: "while fetching data", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertViewController.addAction(cancelAction)
+        present(alertViewController, animated: true)
     }
 }
 

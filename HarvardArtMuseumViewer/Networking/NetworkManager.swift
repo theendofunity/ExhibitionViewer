@@ -8,13 +8,18 @@
 import UIKit
 
 class NetworkManager {
-    let exhibitionNetworkManager = ExhibitionNetworkManager()
+    let exhibitionNetworkManager = Downloader()
     let imageManager = ImageDownloadManager()
     
     func loadGalleries(forFloor floor: Int, completion: @escaping ([Gallery]) -> Void) {
         let request = FloorPageRequest(floorNumber: floor)
         
-        exhibitionNetworkManager.load(request: request){(floorData: FloorData?) in
+        exhibitionNetworkManager.load(request: request){(floorData: FloorData?, error: Error?) in
+            if error != nil {
+                self.showAlert()
+                return
+            }
+            
             guard let floorData = floorData else { return }
             
             var galleries = [Gallery]()
@@ -26,12 +31,18 @@ class NetworkManager {
         }
     }
     
-    func loadExhibits(forGallery gallery: Int, pageNumber: Int, completion: @escaping ([Exhibit]) -> Void) {
+    func loadExhibits(forGallery gallery: Int, pageNumber: Int, completion: @escaping ([Exhibit]?) -> Void) {
         let request = GalleryPageRequest(galleryNumber: gallery, pageNumber: pageNumber)
         
-        exhibitionNetworkManager.load(request: request) { (galleryData: GalleryData?) in
-            guard let galleryData = galleryData else { return }
-            
+        exhibitionNetworkManager.load(request: request) { (galleryData: GalleryData?, error: Error?) in
+            if error != nil {
+                self.showAlert()
+                return
+            }
+            guard let galleryData = galleryData else {
+                completion(nil)
+                return
+            }
             var exhibits = [Exhibit]()
             for record in galleryData.records {
                 guard let exhibit = Exhibit(record: record) else { continue }
@@ -44,6 +55,16 @@ class NetworkManager {
     func loadImage(fromUrl urlString: String, withIdentifier title: String, onCompletion: @escaping ((UIImage?) -> Void)) {
         imageManager.downloadImage(fromUrl: urlString, withIdentifier: title) { image in
             onCompletion(image)
+        }
+    }
+    
+    private func showAlert() {
+        DispatchQueue.main.async {
+            let rootController = UIApplication.shared.windows.first?.rootViewController
+            let alertViewController = UIAlertController(title: "Error", message: "while fetching data", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            alertViewController.addAction(cancelAction)
+            rootController?.present(alertViewController, animated: true)
         }
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -14,14 +14,14 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreenImage" translatesAutoresizingMaskIntoConstraints="NO" id="c2r-Nb-BDt">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Harvard art museum" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Qi-bh-3gL">
-                                <rect key="frame" x="20" y="158" width="374" height="212"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Harvard art museum" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Qi-bh-3gL">
+                                <rect key="frame" x="16" y="158" width="396" height="126.33333333333331"/>
                                 <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
                                 <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                 <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="50"/>
@@ -32,20 +32,19 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7Qi-bh-3gL" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="0u7-dh-Krj"/>
-                            <constraint firstItem="c2r-Nb-BDt" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-44" id="Qe8-uN-2tq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7Qi-bh-3gL" secondAttribute="bottom" constant="492" id="aO3-Hx-Xl9"/>
-                            <constraint firstItem="c2r-Nb-BDt" firstAttribute="centerX" secondItem="7Qi-bh-3gL" secondAttribute="centerX" id="c5c-wR-odW"/>
-                            <constraint firstItem="c2r-Nb-BDt" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="oKk-7P-EVR"/>
-                            <constraint firstItem="c2r-Nb-BDt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vuW-IA-Hsc"/>
-                            <constraint firstItem="7Qi-bh-3gL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="114" id="y97-xA-x2a"/>
-                            <constraint firstItem="7Qi-bh-3gL" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="z6c-IV-cwO"/>
+                            <constraint firstItem="7Qi-bh-3gL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="114" id="FIy-QF-SG0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="c2r-Nb-BDt" secondAttribute="trailing" id="Og9-Vb-U4U"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7Qi-bh-3gL" secondAttribute="trailing" constant="16" id="hYt-5m-v62"/>
+                            <constraint firstItem="c2r-Nb-BDt" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="i30-lK-ZuX"/>
+                            <constraint firstItem="c2r-Nb-BDt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="n8I-kc-DEj"/>
+                            <constraint firstItem="c2r-Nb-BDt" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="unS-ij-5Gi"/>
+                            <constraint firstItem="7Qi-bh-3gL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="zb5-cF-2g6"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>

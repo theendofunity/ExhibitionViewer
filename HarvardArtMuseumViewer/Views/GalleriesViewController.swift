@@ -31,9 +31,9 @@ class GalleriesViewController: UICollectionViewController {
         
         title = viewModel?.title
         
-        DispatchQueue.main.async {
-            guard let viewModel = self.viewModel else { return }
-            viewModel.loadGalleries { [weak self] in
+        guard let viewModel = self.viewModel else { return }
+        viewModel.loadGalleries { [weak self] in
+            DispatchQueue.main.async {
                 self?.collectionView.reloadData()
                 self?.spinner.stopAnimating()
             }
@@ -64,7 +64,7 @@ class GalleriesViewController: UICollectionViewController {
     }
     
     func setupLayout() {
-        collectionView.backgroundColor = .systemGray
+        collectionView.backgroundColor = .white
         let itemsAtRow: CGFloat = 2
         let inset: CGFloat = 20
 

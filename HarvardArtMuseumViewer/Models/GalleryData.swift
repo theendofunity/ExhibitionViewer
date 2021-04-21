@@ -29,7 +29,7 @@ struct GalleryRecord: Decodable {
     let title: String
     let objectNumber: String
     let labelText: String?
-    let imageUrl: String
+    let imageUrl: String?
     let dateBegin: Int
     let people: [People]
     

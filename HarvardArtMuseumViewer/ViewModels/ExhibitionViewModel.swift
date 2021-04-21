@@ -43,12 +43,15 @@ class ExhitionViewModel: ExhibitionViewModelType {
     
     func loadExhibits(completion: @escaping () -> Void) {
         networkManager.loadExhibits(forGallery: galleryNumber, pageNumber: currentPage) { [weak self] newExhibits in
-            if newExhibits.isEmpty {
+            guard let newExhibits = newExhibits else {
                 self?.isLastPage = true
-            } else {
-                self?.exhibits += newExhibits
+                completion()
+                return
             }
-            
+            if (newExhibits.isEmpty) {
+                self?.isLastPage = true
+            }
+            self?.exhibits += newExhibits
             completion()
         }
     }
@@ -66,7 +69,8 @@ class ExhitionViewModel: ExhibitionViewModelType {
     
     func loadImage(forIndexPath indexPath: IndexPath, completion: @escaping () -> Void) {
         var exhibit = exhibits[indexPath.row]
-            networkManager.loadImage(fromUrl: exhibit.imageUrl, withIdentifier: exhibit.title) { [weak self] photo in
+        guard let imageUrl = exhibit.imageUrl else { return }
+            networkManager.loadImage(fromUrl: imageUrl, withIdentifier: exhibit.title) { [weak self] photo in
                 exhibit.photo = photo
                 self?.exhibits[indexPath.row] = exhibit
                 completion()
