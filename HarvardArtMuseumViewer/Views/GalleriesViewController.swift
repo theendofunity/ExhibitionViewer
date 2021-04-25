@@ -60,7 +60,11 @@ class GalleriesViewController: UICollectionViewController {
         
         guard let exhibitsViewModel = viewModel?.exhibitsViewModel() else { return }
         let exhibitionViewController = ExhibitionTableViewController(viewModel: exhibitsViewModel)
-        self.navigationController?.pushViewController(exhibitionViewController, animated: true)
+        exhibitionViewController.modalPresentationStyle = .fullScreen
+        let exhibitionNavigationController = UINavigationController(rootViewController: exhibitionViewController)
+        
+        exhibitionNavigationController.modalPresentationStyle = .overFullScreen
+        present(exhibitionNavigationController, animated: true)
     }
     
     func setupLayout() {

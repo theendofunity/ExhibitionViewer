@@ -150,6 +150,9 @@ class ExhibitionTableViewController: UITableViewController {
     }
     
     private func setupNavigationController() {
+        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(goBack))
+        navigationItem.setLeftBarButton(backButton, animated: true)
+        
         let titleLabel = UILabel()
         titleLabel.lineBreakMode = .byClipping
         titleLabel.numberOfLines = 0
@@ -162,6 +165,10 @@ class ExhibitionTableViewController: UITableViewController {
         titleLabel.text = titleText
         
         navigationItem.titleView = titleLabel
+    }
+    
+    @objc private func goBack() {
+        dismiss(animated: true)
     }
 }
 
