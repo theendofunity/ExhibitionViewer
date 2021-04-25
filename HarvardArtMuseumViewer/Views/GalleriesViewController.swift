@@ -65,6 +65,8 @@ class GalleriesViewController: UICollectionViewController {
         
         exhibitionNavigationController.modalPresentationStyle = .overFullScreen
         present(exhibitionNavigationController, animated: true)
+//        navigationController?.popViewController()
+//        self.navigationController?.pushViewController(exhibitionNavigationController, animated: true)
     }
     
     func setupLayout() {
