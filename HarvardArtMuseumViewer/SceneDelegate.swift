@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let floorsViewController = FloorsViewController(viewModel: floorsViewModel)
 
         let navigationController = UINavigationController(rootViewController: floorsViewController)
-
+        navigationController.navigationBar.prefersLargeTitles = true
         window?.rootViewController = navigationController
 
         window?.makeKeyAndVisible()
