@@ -63,6 +63,8 @@ class DetailedViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         
+        setupNavigationController()
+        
         tableView.allowsSelection = false
         
         guard let viewModel = viewModel else { return }
@@ -102,12 +104,29 @@ class DetailedViewController: UITableViewController {
         descriptionContentConfiguration.text = exhibit.label
         descriptionCell.contentConfiguration = descriptionContentConfiguration
         cells.append(descriptionCell)
+        
+        tableView.tableFooterView = UIView()
     }
     
     private func updatePhoto() {
         guard let newPhoto = viewModel?.exhibit.photo else { return }
         imageCell.changePhoto(newPhoto: newPhoto)
         tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+    }
+    
+    private func setupNavigationController() {
+        let titleLabel = UILabel()
+        titleLabel.lineBreakMode = .byClipping
+        titleLabel.numberOfLines = 0
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        
+        var titleText: String = viewModel?.exhibit.title ?? ""
+        titleText += "\n"
+        print(titleText)
+        titleLabel.text = titleText
+        
+        navigationItem.titleView = titleLabel
     }
 }
 

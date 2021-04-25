@@ -32,11 +32,10 @@ class ExhibitionTableViewController: UITableViewController {
         super.viewDidLoad()
         
         guard let viewModel = viewModel else { return }
-        title = viewModel.title
-        
+
         tableView.register(ExhibitTableViewCell.self, forCellReuseIdentifier: ExhibitTableViewCell.cellIdentifier)
         tableView.register(LoadingCell.self, forCellReuseIdentifier: LoadingCell.cellIdentifier)
-        
+        setupNavigationController()
         viewModel.loadExhibits { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
@@ -148,6 +147,21 @@ class ExhibitionTableViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertViewController.addAction(cancelAction)
         present(alertViewController, animated: true)
+    }
+    
+    private func setupNavigationController() {
+        let titleLabel = UILabel()
+        titleLabel.lineBreakMode = .byClipping
+        titleLabel.numberOfLines = 0
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        
+        var titleText: String = viewModel?.title ?? ""
+        titleText += "\n"
+        print(titleText)
+        titleLabel.text = titleText
+        
+        navigationItem.titleView = titleLabel
     }
 }
 

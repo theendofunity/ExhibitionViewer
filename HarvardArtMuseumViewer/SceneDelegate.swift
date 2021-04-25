@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let floorsViewController = FloorsViewController(viewModel: floorsViewModel)
 
         let navigationController = UINavigationController(rootViewController: floorsViewController)
+
         window?.rootViewController = navigationController
 
         window?.makeKeyAndVisible()
