@@ -108,6 +108,8 @@ class DetailedViewController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     
+    //    MARK: - Private functions
+
     private func updatePhoto() {
         guard let newPhoto = viewModel?.exhibit.photo else { return }
         imageCell.changePhoto(newPhoto: newPhoto)

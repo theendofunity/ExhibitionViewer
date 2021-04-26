@@ -33,7 +33,7 @@ class ExhibitTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupLayout() {
+    private func setupLayout() {
         photo.translatesAutoresizingMaskIntoConstraints = false
         name.translatesAutoresizingMaskIntoConstraints = false
         

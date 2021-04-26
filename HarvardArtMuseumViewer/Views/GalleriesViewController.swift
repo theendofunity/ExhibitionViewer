@@ -10,9 +10,12 @@ import UIKit
 class GalleriesViewController: UICollectionViewController {
 
     //MARK: - Properties
+    
     var viewModel: GalleriesViewModelType?
     let spinner = UIActivityIndicatorView()
     
+    //    MARK: - Initializers
+
     init(viewModel: GalleriesViewModelType) {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -24,6 +27,8 @@ class GalleriesViewController: UICollectionViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //    MARK: - Live time
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupLayout()
@@ -61,15 +66,13 @@ class GalleriesViewController: UICollectionViewController {
         guard let exhibitsViewModel = viewModel?.exhibitsViewModel() else { return }
         let exhibitionViewController = ExhibitionTableViewController(viewModel: exhibitsViewModel)
         exhibitionViewController.modalPresentationStyle = .fullScreen
-        let exhibitionNavigationController = UINavigationController(rootViewController: exhibitionViewController)
-        
-        exhibitionNavigationController.modalPresentationStyle = .overFullScreen
-        present(exhibitionNavigationController, animated: true)
-//        navigationController?.popViewController()
-//        self.navigationController?.pushViewController(exhibitionNavigationController, animated: true)
+
+        self.navigationController?.pushViewController(exhibitionViewController, animated: true)
     }
     
-    func setupLayout() {
+    //    MARK: - Private functions
+
+    private func setupLayout() {
         collectionView.backgroundColor = .white
         let itemsAtRow: CGFloat = 2
         let inset: CGFloat = 20

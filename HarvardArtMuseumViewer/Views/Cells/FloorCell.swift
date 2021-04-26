@@ -30,7 +30,7 @@ class FloorCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupLayout() {
+    private func setupLayout() {
         floorNumberLabel.textAlignment = .center
         floorNumberLabel.font = UIFont.boldSystemFont(ofSize: 20)
     

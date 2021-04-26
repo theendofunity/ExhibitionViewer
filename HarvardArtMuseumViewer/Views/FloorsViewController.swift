@@ -8,7 +8,8 @@
 import UIKit
 
 class FloorsViewController: UICollectionViewController {
-    //MARK: Properties
+    
+    //MARK: - Properties
     
     var viewModel: FloorsViewModelType?
     
@@ -57,7 +58,7 @@ class FloorsViewController: UICollectionViewController {
     
     //MARK: - UI Configuration
     
-    func setupLayout() {
+    private func setupLayout() {
         collectionView.backgroundColor = .white
         let itemsAtRow: CGFloat = 2
         let inset: CGFloat = 20

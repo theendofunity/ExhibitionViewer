@@ -20,7 +20,15 @@ class ImageCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupLayout() {
+    func changePhoto(newPhoto: UIImage?) {
+        if newPhoto == nil {
+            photoImageView.image = UIImage(named: "Image placeholder")
+        } else {
+            photoImageView.image = newPhoto
+        }
+    }
+    
+    private func setupLayout() {
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         photoImageView.contentMode = .scaleToFill
         contentView.addSubview(photoImageView)
@@ -31,13 +39,5 @@ class ImageCell: UITableViewCell {
             photoImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             photoImageView.heightAnchor.constraint(equalToConstant: 250)
         ])
-    }
-    
-    func changePhoto(newPhoto: UIImage?) {
-        if newPhoto == nil {
-            photoImageView.image = UIImage(named: "Image placeholder")
-        } else {
-            photoImageView.image = newPhoto
-        }
     }
 }

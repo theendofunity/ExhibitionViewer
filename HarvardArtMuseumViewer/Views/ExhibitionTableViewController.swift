@@ -15,7 +15,8 @@ class ExhibitionTableViewController: UITableViewController {
     var fetchingMore = false
     
     
-    //MARK - Initializer
+    //MARK - Initializers
+    
     init(viewModel: ExhibitionViewModelType) {
         super.init(style: .plain)
         self.viewModel = viewModel
@@ -26,7 +27,7 @@ class ExhibitionTableViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Functions
+    //MARK: Life time
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,12 +108,6 @@ class ExhibitionTableViewController: UITableViewController {
         navigationController?.pushViewController(detailedViewController, animated: true)
     }
     
-    func updateDetailedView() {
-        guard let currentViewController = navigationController?.visibleViewController as? DetailedViewController else { return }
-        guard let detailedViewModel = viewModel?.detailViewModel() else { return }
-        currentViewController.viewModel = detailedViewModel
-    }
-    
     // MARK: - Scrolling
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -125,7 +120,15 @@ class ExhibitionTableViewController: UITableViewController {
         }
     }
     
-    func loadMore() {
+    //    MARK: - Private functions
+    
+    private func updateDetailedView() {
+        guard let currentViewController = navigationController?.visibleViewController as? DetailedViewController else { return }
+        guard let detailedViewModel = viewModel?.detailViewModel() else { return }
+        currentViewController.viewModel = detailedViewModel
+    }
+    
+    private func loadMore() {
         if viewModel!.isLastPage {
             tableView.deleteSections(IndexSet(integer: 1), with: .automatic)
             return
@@ -150,8 +153,7 @@ class ExhibitionTableViewController: UITableViewController {
     }
     
     private func setupNavigationController() {
-        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(goBack))
-        navigationItem.setLeftBarButton(backButton, animated: true)
+        navigationItem.largeTitleDisplayMode = .never
         
         let titleLabel = UILabel()
         titleLabel.lineBreakMode = .byClipping
@@ -165,10 +167,6 @@ class ExhibitionTableViewController: UITableViewController {
         titleLabel.text = titleText
         
         navigationItem.titleView = titleLabel
-    }
-    
-    @objc private func goBack() {
-        dismiss(animated: true)
     }
 }
 

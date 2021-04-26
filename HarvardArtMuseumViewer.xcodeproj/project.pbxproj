@@ -193,12 +193,10 @@
 			isa = PBXGroup;
 			children = (
 				840CCEC72610D6D600CAD9FA /* FloorsViewModel.swift */,
-				840CCECC2610D7D100CAD9FA /* FloorCellViewModel.swift */,
 				840CCEDB2611C7C100CAD9FA /* GalleriesViewModel.swift */,
-				840CCEE52611C92700CAD9FA /* GalleriesCellViewModel.swift */,
 				D823C1E526160F0A000EAF85 /* ExhibitionViewModel.swift */,
-				D823C1FD26161333000EAF85 /* ExhibitionCellViewModel.swift */,
 				D823C2052616153E000EAF85 /* DetailedViewModel.swift */,
+				D8860F1D26370AEE007FC084 /* Cells */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -270,6 +268,16 @@
 				847F069325E6C01600338B31 /* Info.plist */,
 			);
 			path = HarvardArtMuseumViewerUITests;
+			sourceTree = "<group>";
+		};
+		D8860F1D26370AEE007FC084 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				840CCECC2610D7D100CAD9FA /* FloorCellViewModel.swift */,
+				840CCEE52611C92700CAD9FA /* GalleriesCellViewModel.swift */,
+				D823C1FD26161333000EAF85 /* ExhibitionCellViewModel.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		D8C6B4A726235CC0004650CC /* Cells */ = {

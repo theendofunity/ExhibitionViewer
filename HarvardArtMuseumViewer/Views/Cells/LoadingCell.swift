@@ -28,7 +28,7 @@ class LoadingCell: UITableViewCell {
         activityIndicator.startAnimating()
     }
     
-    func setupLayout() {
+    private func setupLayout() {
         backgroundColor = .clear
         activityIndicator.style = .large
         activityIndicator.color = .black

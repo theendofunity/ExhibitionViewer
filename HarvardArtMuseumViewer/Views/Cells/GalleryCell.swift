@@ -29,7 +29,7 @@ class GalleryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupLayout() {
+    private func setupLayout() {
         galleryTitleLabel.textAlignment = .center
         galleryTitleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         galleryTitleLabel.numberOfLines = 0
