@@ -8,7 +8,11 @@
 import Foundation
 
 class Downloader {
-    let baseUrlString = "https://api.harvardartmuseums.org/"
+    let baseUrlString: String
+
+    init(baseUrl: String) {
+        self.baseUrlString = baseUrl
+    }
 
     func load<T: Decodable>(request: Request, withCompletion completion: @escaping ((T?, Error?) -> Void)) {
         let urlString = "\(baseUrlString)\(request.pathWithParameters())"

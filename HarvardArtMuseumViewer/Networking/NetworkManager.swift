@@ -8,13 +8,18 @@
 import UIKit
 
 class NetworkManager {
-    let exhibitionNetworkManager = Downloader()
+    let baseUrl: String = "https://api.harvardartmuseums.org/"
+    let downloader: Downloader
     let imageManager = ImageDownloadManager()
+
+    init() {
+        downloader =  Downloader(baseUrl: self.baseUrl)
+    }
 
     func loadGalleries(forFloor floor: Int, completion: @escaping ([Gallery]) -> Void) {
         let request = FloorPageRequest(floorNumber: floor)
 
-        exhibitionNetworkManager.load(request: request) {(floorData: FloorData?, error: Error?) in
+        downloader.load(request: request) {(floorData: FloorData?, error: Error?) in
             if error != nil {
                 self.showAlert()
                 return
@@ -34,7 +39,7 @@ class NetworkManager {
     func loadExhibits(forGallery gallery: Int, pageNumber: Int, completion: @escaping ([Exhibit]?) -> Void) {
         let request = GalleryPageRequest(galleryNumber: gallery, pageNumber: pageNumber)
 
-        exhibitionNetworkManager.load(request: request) { (galleryData: GalleryData?, error: Error?) in
+        downloader.load(request: request) { (galleryData: GalleryData?, error: Error?) in
             if error != nil {
                 self.showAlert()
                 return
