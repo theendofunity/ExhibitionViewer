@@ -11,11 +11,11 @@ class FloorCellViewModel: CollectionCellViewModelType {
     var identifier: String = "FloorCell"
 
     var floorNumber: Int
-    
+
     var cellTitle: String {
         return "Floor \(floorNumber)"
     }
-    
+
     init(floorNumber: Int) {
         self.floorNumber = floorNumber
     }

@@ -16,8 +16,10 @@ class ImageDownloadManager {
         maximumActiveDownloads: 4,
         imageCache: AutoPurgingImageCache()
     )
-    
-    func downloadImage(fromUrl urlString: String, withIdentifier title: String, onComplition: @escaping ((UIImage?) -> Void)) {
+
+    func downloadImage(fromUrl urlString: String,
+                       withIdentifier title: String,
+                       onComplition: @escaping ((UIImage?) -> Void)) {
         guard let url = URL(string: urlString) else {
             print("Incorrect URL \(urlString)")
             return
@@ -27,10 +29,10 @@ class ImageDownloadManager {
             return
         }
         let urlRequest = URLRequest(url: url)
-        downloader.download(urlRequest, completion:  { response in
+        downloader.download(urlRequest, completion: { response in
             if case .success(let image) = response.result {
                 self.downloader.imageCache?.add(image, for: urlRequest, withIdentifier: title)
-                
+
                 let size = CGSize(width: 100.0, height: 100.0)
                 let scaledImage = image.af.imageScaled(to: size)
                 DispatchQueue.main.async {
@@ -38,6 +40,6 @@ class ImageDownloadManager {
                 }
             }
         })
-        
+
     }
 }

@@ -7,11 +7,9 @@
 
 import Foundation
 
-
-
 class Downloader {
     let baseUrlString = "https://api.harvardartmuseums.org/"
-    
+
     func load<T: Decodable>(request: Request, withCompletion completion: @escaping ((T?, Error?) -> Void)) {
         let urlString = "\(baseUrlString)\(request.pathWithParameters())"
         print(urlString)
@@ -20,9 +18,9 @@ class Downloader {
             completion(nil, nil)
             return
         }
-        
+
         let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) {(data, request, error) in
+        let task = session.dataTask(with: url) {(data, _, error) in
             guard let data = data, error == nil else {
                 completion(nil, error)
                 return

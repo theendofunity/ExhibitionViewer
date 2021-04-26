@@ -16,7 +16,7 @@ struct Info: Decodable {
     let page: Int
     let pages: Int
     let totalRecords: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case page
         case pages
@@ -32,7 +32,7 @@ struct GalleryRecord: Decodable {
     let imageUrl: String?
     let dateBegin: Int
     let people: [People]
-    
+
     enum CodingKeys: String, CodingKey {
         case classification
         case title
@@ -44,6 +44,6 @@ struct GalleryRecord: Decodable {
     }
 }
 
-struct People : Decodable {
+struct People: Decodable {
     let name: String
 }

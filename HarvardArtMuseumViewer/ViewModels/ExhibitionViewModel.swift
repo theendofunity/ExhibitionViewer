@@ -15,32 +15,32 @@ class ExhitionViewModel: ExhibitionViewModelType {
     var currentPage: Int = 1
     var exhibits = [Exhibit]()
     var selectedCell: IndexPath?
-    
+
     var title: String {
         return galleryTitle
     }
-    
+
     let networkManager = NetworkManager()
-    
+
     init(galleryNumber: Int, galleryTitle: String) {
         self.galleryNumber = galleryNumber
         self.galleryTitle = galleryTitle
     }
-    
+
     func numberOfRows() -> Int {
         return exhibits.count
     }
-    
+
     func cellViewModel(forIndexPath indexPath: IndexPath) -> CollectionCellViewModelType? {
         let exhibit = exhibits[indexPath.row]
-        
+
         return ExhibitionCellViewModel(exhibit: exhibit)
     }
-    
+
     func selectCell(toIndexPath indexPath: IndexPath) {
         selectedCell = indexPath
     }
-    
+
     func loadExhibits(completion: @escaping () -> Void) {
         networkManager.loadExhibits(forGallery: galleryNumber, pageNumber: currentPage) { [weak self] newExhibits in
             guard let newExhibits = newExhibits else {
@@ -48,14 +48,14 @@ class ExhitionViewModel: ExhibitionViewModelType {
                 completion()
                 return
             }
-            if (newExhibits.isEmpty) {
+            if newExhibits.isEmpty {
                 self?.isLastPage = true
             }
             self?.exhibits += newExhibits
             completion()
         }
     }
-    
+
     func loadNextPage(completion: @escaping () -> Void) {
         if isLastPage {
             completion()
@@ -66,7 +66,7 @@ class ExhitionViewModel: ExhibitionViewModelType {
             completion()
         }
     }
-    
+
     func loadImage(forIndexPath indexPath: IndexPath, completion: @escaping () -> Void) {
         var exhibit = exhibits[indexPath.row]
         guard let imageUrl = exhibit.imageUrl else { return }
@@ -76,7 +76,7 @@ class ExhitionViewModel: ExhibitionViewModelType {
                 completion()
             }
     }
-    
+
     func detailViewModel() -> DetailedViewModelType? {
         guard let selectedCell = selectedCell else { return nil }
         let exhibit = exhibits[selectedCell.row]

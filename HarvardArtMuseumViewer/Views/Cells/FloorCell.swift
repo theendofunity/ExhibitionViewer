@@ -9,10 +9,10 @@ import UIKit
 
 class FloorCell: UICollectionViewCell {
     static let cellIdentifier = "FloorCell"
-    
+
     let floorNumberLabel: UILabel = UILabel()
     let backgroundImage: UIImageView = UIImageView()
-    
+
     var viewModel: FloorCellViewModel? {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
@@ -20,31 +20,31 @@ class FloorCell: UICollectionViewCell {
             backgroundImage.image = UIImage(named: "Floor\(viewModel.floorNumber)")
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupLayout() {
         floorNumberLabel.textAlignment = .center
         floorNumberLabel.font = UIFont.boldSystemFont(ofSize: 20)
-    
+
         floorNumberLabel.numberOfLines = 0
-        
+
         backgroundImage.alpha = 0.7
         backgroundImage.contentMode = .scaleToFill
-        
+
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         floorNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-        
+
         contentView.addSubview(backgroundImage)
         contentView.addSubview(floorNumberLabel)
-        
+
         NSLayoutConstraint.activate([
             floorNumberLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             floorNumberLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

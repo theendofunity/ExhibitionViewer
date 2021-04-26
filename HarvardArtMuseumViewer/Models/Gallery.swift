@@ -9,14 +9,14 @@ import Foundation
 
 struct Gallery {
     let name: String
-    let id: Int
+    let galleryId: Int
     let theme: String?
-    
+
     init?(with data: FloorRecord) {
         name = data.name
-        id = data.galleryId
+        galleryId = data.galleryId
         theme = data.theme
-        
+
         if theme == nil {
             return nil
         }

@@ -10,17 +10,17 @@ import Foundation
 class FloorsViewModel: FloorsViewModelType {
     var selectedCell: IndexPath?
     let floors = [1, 2, 3, 4]
-    
+
     func numberOfRows() -> Int {
         return floors.count
     }
-    
+
     func cellViewModel(forIndexPath indexPath: IndexPath) -> CollectionCellViewModelType? {
         let floorNumber = floors[indexPath.item]
         let cellModel = FloorCellViewModel(floorNumber: floorNumber)
         return cellModel
     }
-    
+
     func selectCell(toIndexPath indexPath: IndexPath) {
         selectedCell = indexPath
     }

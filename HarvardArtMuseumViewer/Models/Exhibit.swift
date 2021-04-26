@@ -18,9 +18,8 @@ struct Exhibit {
     var objectNumber: String
     var date: Int
     var label: String
-    var photo: UIImage? 
-    
-    
+    var photo: UIImage?
+
     init?(record: GalleryRecord) {
         self.title = record.title
         self.imageUrl = record.imageUrl
@@ -29,7 +28,7 @@ struct Exhibit {
         self.date = record.dateBegin
         self.label = record.labelText ?? "No description"
         self.photo = UIImage(named: "Placeholder image")
-        
+
         for author in record.people {
             self.authors.append(author.name)
         }

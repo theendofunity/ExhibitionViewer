@@ -9,14 +9,14 @@ import UIKit
 
 class ExhibitionCellViewModel: ExhibitionCellViewModelType {
     var defaultImageUsed: Bool
-    
+
     var photo: UIImage?
     var identifier = "ExhibitCell"
     var exhibit: Exhibit
     var cellTitle: String {
         return exhibit.title
     }
-    
+
     init(exhibit: Exhibit) {
         self.exhibit = exhibit
         if exhibit.photo == nil {

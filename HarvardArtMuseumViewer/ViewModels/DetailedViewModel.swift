@@ -9,7 +9,7 @@ import Foundation
 
 class DetailedViewModel: DetailedViewModelType {
     var exhibit: Exhibit
-    
+
     init(exhibit: Exhibit) {
         self.exhibit = exhibit
     }
