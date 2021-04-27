@@ -37,15 +37,18 @@ class ExhibitTableViewCell: UITableViewCell {
         photo.translatesAutoresizingMaskIntoConstraints = false
         name.translatesAutoresizingMaskIntoConstraints = false
 
+        name.numberOfLines = 0
+
         contentView.addSubview(photo)
         contentView.addSubview(name)
 
         NSLayoutConstraint.activate([
-            photo.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            photo.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
             photo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             photo.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
 
-            name.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 20),
+            name.leftAnchor.constraint(equalTo: photo.rightAnchor, constant: 20),
+            name.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             name.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
